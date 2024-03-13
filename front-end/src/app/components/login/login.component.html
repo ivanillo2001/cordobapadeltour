@@ -9,5 +9,6 @@
       <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
       <span *ngIf="formEnviado && frm.get('password')?.errors?.['required']">Campo requerido</span>
     </div>
-    <button type="submit" class="btn btn-primary mt-3" (click)="validarDatos()">Iniciar Sesión</button>
+    <button type="submit" class="btn btn-primary mt-3" (click)="validarDatos()">Iniciar Sesión</button> <br>
+    <a routerLink="/home" routerLinkActive="router-link-active">Entrar como invitado</a>
 </div>
