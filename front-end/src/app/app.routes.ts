@@ -8,13 +8,16 @@ export const routes: Routes = [
         (c) => c.LoginComponent
       ),
   },
-
   {
     path: 'home',
     loadComponent: () =>
       import('./components/home/home.component').then((c) => c.HomeComponent),
   },
-
+  {
+    path: 'crud',
+    loadComponent: () =>
+      import('./components/crud/crud.component').then((c) => c.CrudComponent),
+  },
   {
     //localhost:4200
     path: '',
