@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import conexion from "../../mysql_conector.js";
 
 export const validarUsuario = async (req, res) => {
@@ -17,3 +16,4 @@ export const validarUsuario = async (req, res) => {
       });
   }
 };
+

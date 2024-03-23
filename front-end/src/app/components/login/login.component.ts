@@ -38,7 +38,8 @@ validarDatos(){
             showConfirmButton: false,
             timer: 1500
           });
-          this.router.navigate(['/crud']);//cargar el componente tareas
+
+          this.router.navigate(['/crud'],{ queryParams: { user: user } });//cargar el componente tareas
         }else{
           Swal.fire({
             icon: "error",
