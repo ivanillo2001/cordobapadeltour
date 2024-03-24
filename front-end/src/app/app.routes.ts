@@ -24,6 +24,11 @@ export const routes: Routes = [
       import('./components/primera-division/primera-division.component').then((c) => c.PrimeraDivisionComponent),
   },
   {
+    path: 'segundaDivision',
+    loadComponent: () =>
+      import('./components/segunda-division/segunda-division.component').then((c) => c.SegundaDivisionComponent),
+  },
+  {
     //localhost:4200
     path: '',
     redirectTo: '/home',
