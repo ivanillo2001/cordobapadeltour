@@ -2,7 +2,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 <!-- Encabezado con *ngIf para mostrar el nombre de usuario si existe -->
-<h1 *ngIf="validarUsuario(user)" id="titulo">Bienvenido {{ user ? user : '' }}</h1>
 <nav *ngIf="validarUsuario(user)" class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand"><img src="../../../assets/imagen/logo.png" width="80px"></a>
@@ -34,3 +33,4 @@
   <!-- Utiliza routerLink para redirigir a la página de inicio de sesión -->
   <a [routerLink]="['/login']">Ir a la página de inicio de sesión</a>
 </ng-container>
+<h1 *ngIf="validarUsuario(user)" id="titulo">Bienvenido {{ user ? user : '' }}</h1>

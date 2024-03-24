@@ -19,9 +19,14 @@ export const routes: Routes = [
       import('./components/crud/crud.component').then((c) => c.CrudComponent),
   },
   {
+    path: 'primeraDivision',
+    loadComponent: () =>
+      import('./components/primera-division/primera-division.component').then((c) => c.PrimeraDivisionComponent),
+  },
+  {
     //localhost:4200
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/home',
     pathMatch: 'full', //carga el path completo
   },
   {

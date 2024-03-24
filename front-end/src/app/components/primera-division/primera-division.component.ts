@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+
 @Component({
-  selector: 'app-pagina404',
+  selector: 'app-primera-division',
   standalone: true,
   imports: [],
-  templateUrl: './pagina404.component.html',
-  styles: ``
+  templateUrl: './primera-division.component.html',
+  styleUrl: './primera-division.component.css'
 })
-export class Pagina404Component {
+export class PrimeraDivisionComponent {
   constructor(private location: Location) { }
   goBack(): void {
     this.location.back();
