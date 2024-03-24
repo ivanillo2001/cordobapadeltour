@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-primera-division',
   standalone: true,
@@ -9,8 +9,14 @@ import { Location } from '@angular/common';
   styleUrl: './primera-division.component.css'
 })
 export class PrimeraDivisionComponent {
-  constructor(private location: Location) { }
+  constructor(
+    private location: Location,
+    private router: Router
+    ) { }
   goBack(): void {
     this.location.back();
+  }
+  segundaDivision(){
+    this.router.navigate(['/segundaDivision']);
   }
 }
