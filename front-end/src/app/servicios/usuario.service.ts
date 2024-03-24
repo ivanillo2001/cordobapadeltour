@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-
+import { Usuario } from '../modelos/usuario';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,5 +16,9 @@ export class UsuarioService {
         return response.valido === true;
       })
     );
+  }
+
+  obtenerUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.url+"/usuarios");
   }
 }

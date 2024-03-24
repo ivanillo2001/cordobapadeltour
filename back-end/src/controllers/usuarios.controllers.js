@@ -16,3 +16,14 @@ export const validarUsuario = async (req, res) => {
       });
   }
 };
+export const obtenerUsuarios = async (req, res) => {
+    try {
+        const { user, password } = req.body;
+        const [result] = await conexion.query("SELECT user FROM usuarios");
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error en el servidor",
+        });
+    }
+  };

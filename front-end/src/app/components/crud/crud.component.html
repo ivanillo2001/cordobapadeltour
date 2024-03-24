@@ -3,10 +3,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
 <!-- Encabezado con *ngIf para mostrar el nombre de usuario si existe -->
-<h1 id="titulo">Bienvenido {{ user ? user : '' }}</h1>
+<h1 *ngIf="validarUsuario(user)" id="titulo">Bienvenido {{ user ? user : '' }}</h1>
 
 <!-- Barra de navegación -->
-<nav *ngIf="user" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="validarUsuario(user)" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navegación</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,12 +20,15 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Agregar partido</a>
         </li>
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="router-link-active"  class="nav-link">Ir a página principal</a>
+        </li>
       </ul>
     </div>
 </nav>
 
 <!-- Redirigir a la página de inicio de sesión si no hay usuario -->
-<ng-container *ngIf="!user">
+<ng-container *ngIf="!validarUsuario(user)">
   <p>Redirigiendo a la página de inicio de sesión...</p>
   <!-- Utiliza routerLink para redirigir a la página de inicio de sesión -->
   <a [routerLink]="['/login']">Ir a la página de inicio de sesión</a>
