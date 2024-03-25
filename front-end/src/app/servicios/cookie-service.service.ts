@@ -29,6 +29,11 @@ export class CookieService {
     }
     return "";
   }
+  // Función para verificar si existe una cookie
+cookieExists(name: string) {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  return decodedCookie.includes(name + "=");
+}
 
   // Función para eliminar una cookie
   deleteCookie(name: string) {
