@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { UsuarioService } from '../../servicios/usuario.service';
 import Swal from 'sweetalert2';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit{
   public frm!: FormGroup; // declaras el formulario
   private serv_usuario = inject(UsuarioService)
   private router = inject (Router)
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder, private cookieService: CookieService){}
   public formEnviado = false
   ngOnInit(): void { 
     this.frm = this.fb.group({
@@ -38,8 +39,9 @@ validarDatos(){
             showConfirmButton: false,
             timer: 1500
           });
+          this.cookieService.setCookie('nombreUsuario',user)
+          this.router.navigate(['/home']);//cargar el componente tareas
 
-          this.router.navigate(['/crud'],{ queryParams: { user: user } });//cargar el componente tareas
         }else{
           Swal.fire({
             icon: "error",

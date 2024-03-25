@@ -14,11 +14,6 @@ export const routes: Routes = [
       import('./components/home/home.component').then((c) => c.HomeComponent),
   },
   {
-    path: 'crud',
-    loadComponent: () =>
-      import('./components/crud/crud.component').then((c) => c.CrudComponent),
-  },
-  {
     path: 'primeraDivision',
     loadComponent: () =>
       import('./components/primera-division/primera-division.component').then((c) => c.PrimeraDivisionComponent),
