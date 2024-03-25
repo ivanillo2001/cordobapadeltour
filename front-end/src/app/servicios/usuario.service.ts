@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Usuario } from '../modelos/usuario';
+import { Division } from '../modelos/divisiones';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +21,13 @@ export class UsuarioService {
 
   obtenerUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.url+"/usuarios");
+  }
+
+  obtenerDivisiones(): Observable<Division[]> {
+    return this.http.get<Division[]>(this.url+"/divisiones");
+  }
+
+  crearJugador(nombre:string,puntos:number,division:number){
+    return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division});
   }
 }
