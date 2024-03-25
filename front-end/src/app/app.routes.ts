@@ -24,6 +24,11 @@ export const routes: Routes = [
       import('./components/segunda-division/segunda-division.component').then((c) => c.SegundaDivisionComponent),
   },
   {
+    path: 'addJugador',
+    loadComponent: () =>
+      import('./components/crear-jugador/crear-jugador.component').then((c) => c.CrearJugadorComponent),
+  },
+  {
     //localhost:4200
     path: '',
     redirectTo: '/home',
