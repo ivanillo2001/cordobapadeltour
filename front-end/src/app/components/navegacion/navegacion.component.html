@@ -30,7 +30,7 @@
           <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
                   <a *ngIf="!comprobarUsuario()" routerLinkActive="router-link-active" class="nav-link">
-                      <button type="button" class="btn btn-success" (click)="irLogin()">Iniciar Sesión</button>
+                      <button type="button" class="btn btn-primary" (click)="irLogin()">Iniciar Sesión</button>
                   </a>
                   <a *ngIf="comprobarUsuario()" routerLinkActive="router-link-active" class="nav-link">
                       <button type="button" class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>
