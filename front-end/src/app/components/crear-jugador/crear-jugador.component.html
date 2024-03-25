@@ -1,23 +1,23 @@
 <div *ngIf="validarSesionIniciada()" id="contenido">
     <h1>Crear jugador</h1>
-    <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Nombre del jugador</label>
-          <input type="text" class="form-control" id="nombreJugador" aria-describedby="emailHelp" placeholder="Nombre del jugador">
-          <small id="errorNombre" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <form [formGroup]="jugadorForm" (ngSubmit)="crearJugador()">
+        <div class="form-group mt-4">
+          <label for="nombreJugador">Nombre del jugador</label>
+          <input type="text" class="form-control" id="nombreJugador" formControlName="nombre">
+          <small *ngIf="jugadorForm.get('nombre')?.errors?.['required']" id="errorNombre">Campo obligatorio</small>
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Puntos del jugador</label>
-          <input type="number" class="form-control" id="puntosJugador" placeholder="Puntos:">
-          <small id="errorNombre" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="form-group mt-4">
+          <label for="puntosJugador">Puntos del jugador</label>
+          <input type="number" class="form-control" id="puntosJugador" formControlName="puntos">
+          <small *ngIf="jugadorForm.get('puntos')?.errors?.['required']" id="errorPuntuacion">Campo obligatorio</small>
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Division del jugador</label>
-            <select class="form-control" id="divisiones">
+        <div class="form-group mt-4">
+            <label for="divisiones">División del jugador</label>
+            <select class="form-control" id="divisiones" formControlName="division">
             </select>
           </div>
-        <button type="submit" class="btn btn-primary" (click)="crearJugador()">Crear Jugador</button>
+        <button type="submit" class="btn btn-primary mt-2">Crear Jugador</button>
       </form>
 </div>
 
-<a *ngIf="!validarSesionIniciada()" href="/login">Inicia sesion para poder acceder</a>
+<a *ngIf="!validarSesionIniciada()" href="/login">Inicia sesión para poder acceder</a>

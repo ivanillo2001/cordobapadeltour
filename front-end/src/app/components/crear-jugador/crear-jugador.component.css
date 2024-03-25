@@ -1,0 +1,9 @@
+#contenido{
+    margin-top: 4ch;
+    background-color: rgb(240, 240, 245);
+    border-radius: 15px;
+}
+small{
+    color: red;
+    font-weight: bold;
+}

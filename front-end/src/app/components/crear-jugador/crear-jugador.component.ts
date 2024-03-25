@@ -2,14 +2,23 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CookieService } from '../../servicios/cookie-service.service';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../servicios/usuario.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-crear-jugador',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './crear-jugador.component.html',
   styleUrl: './crear-jugador.component.css'
 })
 export class CrearJugadorComponent implements OnInit{
+  jugadorForm: FormGroup
+  constructor(private formBuilder: FormBuilder) {
+    this.jugadorForm = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      puntos: ['', [Validators.required]],
+      division: ['',[ Validators.required]]
+    });
+  }
   private cookieService = inject(CookieService)
   private servicioUsuarios = inject(UsuarioService)
   ngOnInit(): void {
@@ -43,11 +52,22 @@ export class CrearJugadorComponent implements OnInit{
     );
 }
 
-  crearJugador(){
-    let nombreJugador= document.querySelector<HTMLInputElement>("#nombreJugador")!.value;
-    let puntosJugador= document.querySelector<HTMLInputElement>("#puntosJugador")!.value;
-    let divisionJugador= document.querySelector<HTMLInputElement>("#divisiones")!.value;
-    this.guardarJugador(nombreJugador,puntosJugador,divisionJugador)
+  crearJugador() {
+    if (this.jugadorForm.valid) {
+      const nombre = this.jugadorForm.get('nombre')!.value;
+      const puntos = this.jugadorForm.get('puntos')!.value;
+      const division = this.jugadorForm.get('division')!.value;
+
+      this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe(
+        (data) => {
+          console.log('Jugador creado con éxito:', data);
+        },
+        (error) => {
+          console.error('Error al crear jugador:', error);
+        }
+      );
+    }
+    
   }
 
   guardarJugador(nombre: string, puntos: string, division: string) {
