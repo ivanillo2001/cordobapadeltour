@@ -59,3 +59,25 @@ export const obtenerUsuarios = async (req, res) => {
         });
     }
   };
+
+  export const jugadoresPrimera = async (req, res) => {
+    try {
+        const [result] = await conexion.query("SELECT * FROM jugadores where division = 1 order by puntos desc");
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error en el servidor",
+        });
+    }
+  };
+
+  export const jugadoresSegunda = async (req, res) => {
+    try {
+        const [result] = await conexion.query("SELECT * FROM jugadores where division = 2 order by puntos desc");
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error en el servidor",
+        });
+    }
+  };

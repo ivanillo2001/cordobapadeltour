@@ -3,6 +3,7 @@ import { CookieService } from '../../servicios/cookie-service.service';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crear-jugador',
   standalone: true,
@@ -60,10 +61,30 @@ export class CrearJugadorComponent implements OnInit{
       this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);
+          Swal.fire({
+            icon: "success",
+            title: "Jugador creado exitosamente",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.jugadorForm.reset()
         },
         error:(error) => {
           console.error('Error al crear jugador:', error);
+          Swal.fire({
+            icon: "error",
+            title: "No se ha podido crear el jugador",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
+      });
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Formulario no válido",
+        showConfirmButton: false,
+        timer: 1500
       });
     }
     
