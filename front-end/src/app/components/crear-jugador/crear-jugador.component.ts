@@ -16,7 +16,7 @@ export class CrearJugadorComponent implements OnInit{
     this.jugadorForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       puntos: ['', [Validators.required]],
-      division: ['',[ Validators.required]]
+      division: ['1',[ Validators.required]]
     });
   }
   private cookieService = inject(CookieService)
@@ -57,9 +57,6 @@ export class CrearJugadorComponent implements OnInit{
       const nombre = this.jugadorForm.get('nombre')!.value;
       const puntos = this.jugadorForm.get('puntos')!.value;
       const division = this.jugadorForm.get('division')!.value;
-      console.log(nombre);
-      console.log(puntos);
-      console.log(division);
       this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);
