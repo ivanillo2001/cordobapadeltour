@@ -57,15 +57,17 @@ export class CrearJugadorComponent implements OnInit{
       const nombre = this.jugadorForm.get('nombre')!.value;
       const puntos = this.jugadorForm.get('puntos')!.value;
       const division = this.jugadorForm.get('division')!.value;
-
-      this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe(
-        (data) => {
+      console.log(nombre);
+      console.log(puntos);
+      console.log(division);
+      this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe({
+        next:(data) => {
           console.log('Jugador creado con éxito:', data);
         },
-        (error) => {
+        error:(error) => {
           console.error('Error al crear jugador:', error);
         }
-      );
+      });
     }
     
   }
@@ -74,15 +76,13 @@ export class CrearJugadorComponent implements OnInit{
     let puntosInteger = parseInt(puntos);
     let divisionInteger = parseInt(division);
     this.servicioUsuarios.crearJugador(nombre, puntosInteger, divisionInteger)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next:(data) => {
           console.log('Jugador creado con éxito:', data);
         },
-        (error) => {
+        error:(error) => {
           console.error('Error al crear jugador:', error);
         }
-      );
+      });
   }
-  
-  
 }
