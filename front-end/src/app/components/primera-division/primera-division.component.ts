@@ -31,17 +31,20 @@ export class PrimeraDivisionComponent implements OnInit{
           imagen.width=200
           const cardJugador = document.createElement("div")
           cardJugador.classList.add("cardJugador")
-          cardJugador.classList.add("col-md-5")
-          cardJugador.classList.add("m-md-4")
+          cardJugador.classList.add("col-md-6")
+          cardJugador.classList.add("m-md-5")
           cardJugador.classList.add("mt-3")
           cardJugador.style.textAlign='center'
           cardJugador.style.backgroundColor = "#C2E0EC";
           cardJugador.style.borderRadius = "15px";
+          cardJugador.style.width="350px"
           cardJugador.style.color="black"
           cardJugador.append(imagen)
           cardJugador.append(nombre)
           cardJugador.append(puntos)
           zonaJugadores.append(cardJugador)
+          zonaJugadores.style.margin="0 auto"
+          zonaJugadores.style.justifyContent="center"
         });
       }
     )

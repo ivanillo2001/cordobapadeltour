@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CookieService } from '../../servicios/cookie-service.service';
-import { UsuarioService } from '../../servicios/usuario.service';
 import { Usuario } from '../../modelos/usuario';
 @Component({
   selector: 'app-navegacion',
@@ -14,7 +13,6 @@ import { Usuario } from '../../modelos/usuario';
 export class NavegacionComponent implements OnInit {
   private router = inject(Router)
   private cookieService = inject(CookieService);
-  private userService = inject(UsuarioService);
   usuarios: Usuario[] = [];
   ngOnInit(): void {
     this.comprobarUsuario();

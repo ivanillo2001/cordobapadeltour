@@ -35,5 +35,8 @@ export class UsuarioService {
   jugadoresPrimera(): Observable<Jugador[]> {
     return this.http.get<Jugador[]>(this.url+"/jugadores/primeraDivision");
   }
+  jugadoresSegunda(): Observable<Jugador[]> {
+    return this.http.get<Jugador[]>(this.url+"/jugadores/segundaDivision");
+  }
 
 }
