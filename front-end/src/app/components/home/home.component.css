@@ -1,4 +1,5 @@
-#titulo{
+
+#titulo, #directivos{
     margin-top: 3vh;
     text-align: center;
     justify-content: center;
@@ -7,4 +8,57 @@
     font-size: 6vh;
     font-style: normal;
     color: rgb(72, 146, 226);
+}
+#imagenPortada{
+    max-width: 75%; /* La imagen nunca será más grande que su contenedor */
+    height: auto;
+    max-height: 450px; /* La altura se ajustará automáticamente para mantener la proporción de aspecto */
+    justify-content: center;
+    display: block;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+.imagen-con-hover {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.imagen-responsive {
+    width: 55%;
+    height: auto;
+    display: block;
+}
+
+.texto-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 25px;
+}
+
+.imagen-con-hover:hover .texto-hover {
+    opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+    .texto-hover {
+        position: static;
+        transform: none;
+        opacity: 1;
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+    }
+}
+
+.organizadores{
+    text-align: center;
 }
