@@ -12,10 +12,16 @@ export class UsuarioService {
   private http = inject(HttpClient)
   
   //validar usuario
-  validarUsuario(user:string, password:string):Observable<boolean>{
-    return this.http.post(`${this.url}/usuario`,{user,password}).pipe(
+  validarUsuario(user: string, password: string): Observable<any> {
+    return this.http.post(`${this.url}/usuario`, { user, password }).pipe(
       map((response: any) => {
-        return response.valido === true;
+        if (response.valido === true) {
+          // Si las credenciales son válidas, devolvemos un objeto que contiene el valor booleano "valido" y el rol del usuario
+          return { valido: true, rol: response.rol };
+        } else {
+          // Si las credenciales no son válidas, devolvemos solo un objeto que indica que las credenciales son inválidas
+          return { valido: false };
+        }
       })
     );
   }
@@ -24,6 +30,12 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.url+"/usuarios");
   }
 
+  obtenerJugador(nombre:string):Observable<Jugador[]>{
+    return this.http.post<Jugador[]>(this.url+"/jugadores/obtenerJugador",{nombre});
+  }
+  eliminarJugador(idJugador:number){
+    return this.http.post(this.url+'/jugadores/eliminarJugador',{idJugador})
+  }
   obtenerDivisiones(): Observable<Division[]> {
     return this.http.get<Division[]>(this.url+"/divisiones");
   }

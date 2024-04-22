@@ -29,6 +29,11 @@ export const routes: Routes = [
       import('./components/crear-jugador/crear-jugador.component').then((c) => c.CrearJugadorComponent),
   },
   {
+    path: 'eliminarJugador',
+    loadComponent: () =>
+      import('./components/eliminar-jugador/eliminar-jugador.component').then((c) => c.EliminarJugadorComponent),
+  },
+  {
     //localhost:4200
     path: '',
     redirectTo: '/home',

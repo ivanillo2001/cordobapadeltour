@@ -1,21 +1,29 @@
 import conexion from "../../mysql_conector.js";
 
 export const validarUsuario = async (req, res) => {
-  try {
+    try {
       const { user, password } = req.body;
-      const [result] = await conexion.query("SELECT COUNT(*) as count FROM usuarios WHERE user = ? AND password = ?", [user, password]);
-      const count = result[0].count;
-      if (count > 0) {
-          res.status(200).json({ valido: true });
+      console.log(req.body);
+  
+      // Realizar la consulta para obtener los jugadores y el rol que coinciden con las credenciales
+      const result = await conexion.query("SELECT *, rol FROM jugadores WHERE username = ? AND password = ?", [user, password]);
+  
+      // Verificar si se encontraron jugadores con las credenciales proporcionadas
+      if (result.length > 0) {
+        // Si se encontraron jugadores, devolver el rol y los jugadores
+        const rol = result[0].rol;
+        res.status(200).json({ valido: true, rol, jugadores: result });
       } else {
-          res.status(200).json({ valido: false });
+        // Si no se encontraron jugadores, devolver un mensaje indicando que las credenciales son inválidas
+        res.status(200).json({ valido: false, message: "Credenciales inválidas" });
       }
-  } catch (error) {
+    } catch (error) {
       res.status(500).json({
-          message: "Error en el servidor",
+        message: "Error en el servidor",
       });
-  }
-};
+    }
+  };
+  
 export const obtenerUsuarios = async (req, res) => {
     try {
         const { user, password } = req.body;
@@ -79,5 +87,37 @@ export const obtenerUsuarios = async (req, res) => {
         res.status(500).json({
             message: "Error en el servidor",
         });
+    }
+  };
+
+  export const obtenerJugador = async (req, res) => {
+    try {
+      const { nombre } = req.body;
+      console.log(req.body);
+      const [result] = await conexion.query("SELECT * FROM jugadores WHERE nombre = ?", [nombre]);
+      
+      res.status(200).json(result);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
+    }
+  };
+
+  export const eliminarJugador = async (req, res) => {
+    try {
+      const { idJugador } = req.body;
+      console.log(req.body);
+      // Corrección aquí: Se necesita un '?' para el placeholder de nombre
+      const [result] = await conexion.query("delete FROM jugadores WHERE idJugador = ?", [idJugador]);
+      res.status(200).json(result);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
     }
   };

@@ -28,32 +28,36 @@ export class LoginComponent implements OnInit{
     })
   }
 
-validarDatos(){
-  this.formEnviado=true
-  if (this.frm.valid) {
-    const user =  this.frm.get('username')?.value
-    const password = this.frm.get('password')?.value
-    this.serv_usuario.validarUsuario(user,password).subscribe(
-      res =>{
-        if (res) {
-          Swal.fire({
-            icon: "success",
-            title: "Bienvenido "+ user,
-            showConfirmButton: false,
-            timer: 1500
-          });
-          this.cookieService.setCookie('nombreUsuario',user)
-          this.location.back();
-        }else{
-          Swal.fire({
-            icon: "error",
-            title: "Credenciales inválidas.",
-            footer: '<a href="/login">Vuelve a intentarlo</a>',
-            showConfirmButton: true,
-          });
+  validarDatos(){
+    this.formEnviado=true
+    if (this.frm.valid) {
+      const user =  this.frm.get('username')?.value
+      const password = this.frm.get('password')?.value
+      this.serv_usuario.validarUsuario(user,password).subscribe(
+        res =>{
+          console.log(res);
+          if (res.valido) {
+            Swal.fire({
+              icon: "success",
+              title: "Bienvenido "+ user,
+              showConfirmButton: false,
+              timer: 1500
+            });
+            this.cookieService.setCookie('nombreUsuario', user);
+            if (res.rol) {
+              this.cookieService.setCookie('rol', res.rol);
+            }
+            this.location.back();
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Credenciales inválidas.",
+              footer: '<a href="/login">Vuelve a intentarlo</a>',
+              showConfirmButton: true,
+            });
+          }
         }
-      }
-    )
+      );
+    }
   }
-}
 }
