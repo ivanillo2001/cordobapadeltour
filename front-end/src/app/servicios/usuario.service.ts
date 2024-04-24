@@ -36,6 +36,9 @@ export class UsuarioService {
   eliminarJugador(idJugador:number){
     return this.http.post(this.url+'/jugadores/eliminarJugador',{idJugador})
   }
+  crearPareja(idJugador1:number, idJugador2:number){
+    return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2})
+  }
   obtenerDivisiones(): Observable<Division[]> {
     return this.http.get<Division[]>(this.url+"/divisiones");
   }

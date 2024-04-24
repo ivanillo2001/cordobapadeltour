@@ -109,9 +109,28 @@ export const obtenerUsuarios = async (req, res) => {
   export const eliminarJugador = async (req, res) => {
     try {
       const { idJugador } = req.body;
-      console.log(req.body);
       // Corrección aquí: Se necesita un '?' para el placeholder de nombre
       const [result] = await conexion.query("delete FROM jugadores WHERE idJugador = ?", [idJugador]);
+      res.status(200).json(result);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
+    }
+  };
+  export const crearPareja = async (req, res) => {
+    try {
+      const { idJugador1, idJugador2 } = req.body;
+      const [result] = await conexion.query(
+        "UPDATE jugadores SET idPareja = CASE idJugador " +
+        "WHEN ? THEN ? " +
+        "WHEN ? THEN ? " +
+        "END " +
+        "WHERE idJugador IN (?, ?)",
+        [idJugador1, idJugador2, idJugador2, idJugador1, idJugador1, idJugador2]
+      );
       res.status(200).json(result);
       console.log(result);
     } catch (error) {
