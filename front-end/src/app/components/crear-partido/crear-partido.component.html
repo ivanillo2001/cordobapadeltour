@@ -1,0 +1,87 @@
+<h1>Crea un nuevo partido</h1>
+<div class="row" id="formulario">
+    <form [formGroup]="partidoForm">
+        <div class="col-md-4">
+            <h2>Indica la división</h2>
+            <select class="form-control" id="division" formControlName="division">
+                <option value="0">Selecciona una division</option>
+                <option value="1">Primera división</option>
+                <option value="2">Segunda división</option>
+              </select>
+        </div>
+        <div class="row mt-md-5">
+            <div class="col-md-4" id="pareja1">
+                <h1>Pareja 1</h1>
+                <select class="form-control" id="jugador1" formControlName="jugador1">
+                    <option value="0">Indique el jugador</option>
+                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
+                        {{ jugador.nombre }}
+                      </option>
+                </select>
+                <select class="form-control mt-5" id="jugador2" formControlName="jugador2">
+                    <option value="0">Indique el jugador</option>
+                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
+                        {{ jugador.nombre }}
+                      </option>
+                </select>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4" id="pareja2">
+                <h1>Pareja 2</h1>
+                <select class="form-control" id="jugador3" formControlName="jugador3">
+                    <option value="0">Indique el jugador</option>
+                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
+                        {{ jugador.nombre }}
+                      </option>
+                </select>
+                <select class="form-control mt-5" id="jugador4" formControlName="jugador4">
+                    <option value="0">Indique el jugador</option>
+                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
+                        {{ jugador.nombre }}
+                      </option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-md-5">
+            <h1>RESULTADO</h1>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1" placeholder="Primer Set Pareja1">
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2" placeholder="Primer Set Pareja2">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1" placeholder="Segundo Set Pareja1">
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2" placeholder="Segundo Set Pareja2">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1" placeholder="Tercer Set Pareja1">
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2" placeholder="Tercer Set Pareja2">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">Crear Partido</button>
+    </form>
+</div>

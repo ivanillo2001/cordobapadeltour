@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { Usuario } from '../modelos/usuario';
 import { Division } from '../modelos/divisiones';
 import { Jugador } from '../modelos/jugador';
+import { Pareja } from '../modelos/pareja';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,11 +34,17 @@ export class UsuarioService {
   obtenerJugador(nombre:string):Observable<Jugador[]>{
     return this.http.post<Jugador[]>(this.url+"/jugadores/obtenerJugador",{nombre});
   }
+  cargarPareja(idJugador:number):Observable<Pareja>{
+    return this.http.post<Pareja>(this.url+"/jugadores/cargarPareja",{idJugador});
+  }
   eliminarJugador(idJugador:number){
     return this.http.post(this.url+'/jugadores/eliminarJugador',{idJugador})
   }
   crearPareja(idJugador1:number, idJugador2:number){
     return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2})
+  }
+  crearPartido(jugador1:number,jugador2:number,jugador3:number,jugador4:number,set1:string,set2:string,set3:string){
+    return this.http.post(this.url+'/partidos/crearPartido',{jugador1,jugador2,jugador3,jugador4,set1,set2,set3})
   }
   obtenerDivisiones(): Observable<Division[]> {
     return this.http.get<Division[]>(this.url+"/divisiones");

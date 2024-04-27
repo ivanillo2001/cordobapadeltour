@@ -39,6 +39,11 @@ export const routes: Routes = [
       import('./components/nueva-pareja/nueva-pareja.component').then((c) => c.NuevaParejaComponent),
   },
   {
+    path: 'crearPartido',
+    loadComponent: () =>
+      import('./components/crear-partido/crear-partido.component').then((c) => c.CrearPartidoComponent),
+  },
+  {
     //localhost:4200
     path: '',
     redirectTo: '/home',
