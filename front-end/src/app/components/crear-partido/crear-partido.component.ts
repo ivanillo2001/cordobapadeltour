@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Jugador } from '../../modelos/jugador';
 import { Pareja } from '../../modelos/pareja';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crear-partido',
   standalone: true,
@@ -23,7 +23,14 @@ export class CrearPartidoComponent implements OnInit{
       jugador1: ['0', [Validators.required]],
       jugador2: ['0', [Validators.required]],
       jugador3: ['0',[ Validators.required]],
-      jugador4: ['0',[ Validators.required]]
+      jugador4: ['0',[ Validators.required]],
+      juegos1SetPareja1: [0,[ Validators.required]],
+      juegos1SetPareja2: [0,[ Validators.required]],
+      juegos2SetPareja1: [0,[ Validators.required]],
+      juegos2SetPareja2: [0,[ Validators.required]],
+      juegos3SetPareja1: [0],
+      juegos3SetPareja2: [0],
+      
     });
   }
   ngOnInit(): void {
@@ -49,4 +56,37 @@ export class CrearPartidoComponent implements OnInit{
     }
   }
 
+  crearPartido() {
+    if (this.partidoForm.valid) {
+      let jugador1 = this.partidoForm.get('jugador1')!.value;
+      let jugador2 = this.partidoForm.get('jugador2')!.value;
+      let jugador3 = this.partidoForm.get('jugador3')!.value;
+      let jugador4 = this.partidoForm.get('jugador4')!.value;
+      let set1 = this.partidoForm.get('juegos1SetPareja1')!.value + ' - '+this.partidoForm.get('juegos1SetPareja2')!.value ;
+      let set2 = this.partidoForm.get('juegos2SetPareja1')!.value + ' - '+this.partidoForm.get('juegos2SetPareja2')!.value ;
+      let set3 = this.partidoForm.get('juegos3SetPareja1')!.value + ' - '+this.partidoForm.get('juegos3SetPareja2')!.value ;
+      
+      this.serviciosJugadores.crearPartido(jugador1,jugador2,jugador3,jugador4,set1,set2,set3).subscribe({
+        next:(data) => {
+          console.log('Partido creado con éxito:', data);
+          Swal.fire({
+            icon: "success",
+            title: "Partido creado exitosamente",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.partidoForm.reset()
+        },
+        error:(error) => {
+          console.error('Error al crear partido:', error);
+          Swal.fire({
+            icon: "error",
+            title: "No se ha podido crear el partido",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+    }
+  }
 }

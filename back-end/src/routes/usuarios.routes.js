@@ -1,6 +1,6 @@
 "use strict"
 import { Router } from "express";
-import {validarUsuario, obtenerUsuarios, obtenerDivisiones,obtenerJugadores, crearJugador, jugadoresPrimera, jugadoresSegunda, obtenerJugador, eliminarJugador, crearPareja, crearPartido, cargarPareja} from "../controllers/usuarios.controllers.js";
+import {validarUsuario, obtenerUsuarios, obtenerDivisiones,obtenerJugadores, crearJugador, jugadoresPrimera, jugadoresSegunda, obtenerJugador, eliminarJugador, crearPareja, crearPartido} from "../controllers/usuarios.controllers.js";
 
 const router = Router();
 
@@ -15,5 +15,4 @@ router.post("/jugadores/obtenerJugador",obtenerJugador)
 router.post("/jugadores/eliminarJugador",eliminarJugador)
 router.post('/jugadores/crearPareja',crearPareja)
 router.post('/partidos/crearPartido',crearPartido)
-router.post('/jugadores/cargarPareja',cargarPareja)
 export default router;//lo exportamos.

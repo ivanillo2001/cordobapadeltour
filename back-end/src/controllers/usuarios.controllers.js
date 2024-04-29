@@ -143,8 +143,9 @@ export const obtenerUsuarios = async (req, res) => {
 
   export const crearPartido = async (req, res) => {
     try {
-        const {jugador1,jugador2,jugador3,jugador4,set1,set2,set3}= req.body
-        const [result] = await conexion.query("INSERT INTO `partido`(`idPartido`, `jugador1`, `jugador2`, `jugador3`, `jugador4`,`set1`,`set2`,`set3`) VALUES (NULL,?,?,?,?,?,?,?)",[jugador1,jugador2,jugador3,jugador4,set1,set2,set3]);
+        const {jugador1,jugador2,jugador3,jugador4,set1,set2,set3}= req.body;
+        console.log(req.body);
+        const result = await conexion.query("INSERT INTO partido(idPartido, idJugador1, idJugador2, idJugador3, idJugador4,set1,set2,set3) VALUES (NULL,?,?,?,?,?,?,?)",[jugador1,jugador2,jugador3,jugador4,set1,set2,set3]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
@@ -153,25 +154,3 @@ export const obtenerUsuarios = async (req, res) => {
     }
   };
 
-  export const cargarPareja = async (req, res) => {
-    try {
-      const { idJugador } = req.body;
-  
-      // Realizar la consulta SQL para obtener la pareja del jugador
-      const [result] = await conexion.query("SELECT nombre AS nombrePareja, idJugador FROM jugadores WHERE idJugador = (SELECT idPareja FROM jugadores WHERE idJugador = ?)", [idJugador]);
-  
-      // Verificar si se encontró un resultado
-      if (result.length > 0) {
-        // Si se encontró, enviar el nombre de la pareja en la respuesta
-        res.status(200).json({ nombrePareja: result[0].nombrePareja });
-      } else {
-        // Si no se encontró, enviar un mensaje indicando que no se encontró la pareja
-        res.status(404).json({ message: "La pareja no fue encontrada" });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        message: "Error en el servidor",
-      });
-    }
-  };
