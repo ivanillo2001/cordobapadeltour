@@ -16,6 +16,7 @@ export class CrearPartidoComponent implements OnInit{
   partidoForm: FormGroup
   jugadores: Jugador[] = [];
   pareja1!: Pareja
+  division !:string
   private serviciosJugadores = inject(UsuarioService)
   constructor(private formBuilder: FormBuilder) {
     this.partidoForm = this.formBuilder.group({
@@ -36,8 +37,8 @@ export class CrearPartidoComponent implements OnInit{
   ngOnInit(): void {
     const selectDivision = document.querySelector('#division') as HTMLSelectElement;
     selectDivision.addEventListener('change', () => {
-      const division = selectDivision.value;
-      this.cargarJugadoresDivision(parseInt(division));
+      this.division = selectDivision.value;
+      this.cargarJugadoresDivision(parseInt(this.division));
     });
   }  
   cargarJugadoresDivision(idDivision:number){
@@ -66,7 +67,7 @@ export class CrearPartidoComponent implements OnInit{
       let set2 = this.partidoForm.get('juegos2SetPareja1')!.value + ' - '+this.partidoForm.get('juegos2SetPareja2')!.value ;
       let set3 = this.partidoForm.get('juegos3SetPareja1')!.value + ' - '+this.partidoForm.get('juegos3SetPareja2')!.value ;
       
-      this.serviciosJugadores.crearPartido(jugador1,jugador2,jugador3,jugador4,set1,set2,set3).subscribe({
+      this.serviciosJugadores.crearPartido(jugador1,jugador2,jugador3,jugador4,set1,set2,set3,parseInt(this.division)).subscribe({
         next:(data) => {
           console.log('Partido creado con éxito:', data);
           Swal.fire({

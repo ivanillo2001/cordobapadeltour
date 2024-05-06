@@ -46,8 +46,8 @@ export class UsuarioService {
   crearPareja(idJugador1:number, idJugador2:number,division:number){
     return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2, division})
   }
-  crearPartido(jugador1:number,jugador2:number,jugador3:number,jugador4:number,set1:string,set2:string,set3:string){
-    return this.http.post(this.url+'/partidos/crearPartido',{jugador1,jugador2,jugador3,jugador4,set1,set2,set3})
+  crearPartido(jugador1:number,jugador2:number,jugador3:number,jugador4:number,set1:string,set2:string,set3:string, division:number){
+    return this.http.post(this.url+'/partidos/crearPartido',{jugador1,jugador2,jugador3,jugador4,set1,set2,set3,division})
   }
   obtenerDivisiones(): Observable<Division[]> {
     return this.http.get<Division[]>(this.url+"/divisiones");

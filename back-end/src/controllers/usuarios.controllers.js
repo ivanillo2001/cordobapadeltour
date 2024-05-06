@@ -143,9 +143,9 @@ export const obtenerUsuarios = async (req, res) => {
 
   export const crearPartido = async (req, res) => {
     try {
-        const {jugador1,jugador2,jugador3,jugador4,set1,set2,set3}= req.body;
+        const {jugador1,jugador2,jugador3,jugador4,set1,set2,set3, division}= req.body;
         console.log(req.body);
-        const result = await conexion.query("INSERT INTO partido(idPartido, idJugador1, idJugador2, idJugador3, idJugador4,set1,set2,set3) VALUES (NULL,?,?,?,?,?,?,?)",[jugador1,jugador2,jugador3,jugador4,set1,set2,set3]);
+        const result = await conexion.query("INSERT INTO partido(idPartido, idJugador1, idJugador2, idJugador3, idJugador4,set1,set2,set3, division) VALUES (NULL,?,?,?,?,?,?,?,?)",[jugador1,jugador2,jugador3,jugador4,set1,set2,set3, division]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
@@ -164,5 +164,21 @@ export const obtenerUsuarios = async (req, res) => {
         res.status(500).json({
             message: "Error en el servidor",
         });
+    }
+  };
+
+  export const mostrarPartidos = async (req, res) => {
+    try {
+      const { division } = req.body;
+
+      const [result] = await conexion.query("SELECT * FROM jugadores WHERE division = ?", [division]);
+      
+      res.status(200).json(result);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
     }
   };
