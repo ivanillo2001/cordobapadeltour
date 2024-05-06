@@ -40,8 +40,11 @@ export class UsuarioService {
   eliminarJugador(idJugador:number){
     return this.http.post(this.url+'/jugadores/eliminarJugador',{idJugador})
   }
-  crearPareja(idJugador1:number, idJugador2:number){
-    return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2})
+  modificarPareja(idJugador1:number, idJugador2:number){
+    return this.http.post(this.url+'/jugadores/modificarPareja',{idJugador1,idJugador2})
+  }
+  crearPareja(idJugador1:number, idJugador2:number,division:number){
+    return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2, division})
   }
   crearPartido(jugador1:number,jugador2:number,jugador3:number,jugador4:number,set1:string,set2:string,set3:string){
     return this.http.post(this.url+'/partidos/crearPartido',{jugador1,jugador2,jugador3,jugador4,set1,set2,set3})

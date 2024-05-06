@@ -16,7 +16,7 @@ export class NuevaParejaComponent {
   divisionForm: FormGroup;
   parejaForm: FormGroup;
   jugadores: Jugador[] = [];
-
+  private division!:number
   constructor(private formBuilder: FormBuilder, private serviciosJugadores: UsuarioService) {
     this.divisionForm = this.formBuilder.group({
       division: ['1', [Validators.required]],
@@ -32,8 +32,8 @@ export class NuevaParejaComponent {
     let zonaJugadores = document.querySelector('#zonaJugadores');
     zonaJugadores?.classList.remove('d-none');
 
-    const idDivision = this.divisionForm.get('division')?.value;
-    if (idDivision == 1) {
+    this.division = this.divisionForm.get('division')?.value;
+    if (this.division == 1) {
       
       this.serviciosJugadores.jugadoresPrimera().subscribe(
         (jugadores: Jugador[]) => {
@@ -49,10 +49,21 @@ export class NuevaParejaComponent {
     }
   }
 
-  crearPareja() {
+  actualizarParejas() {
     let idJugador1 = this.parejaForm.get('jugador1')?.value;
     let idJugador2 = this.parejaForm.get('jugador2')?.value;
-    this.serviciosJugadores.crearPareja(idJugador1,idJugador2).subscribe(
+    this.serviciosJugadores.modificarPareja(idJugador1,idJugador2).subscribe(
+      (result)=>{
+      },
+      (error)=>{
+      }
+    )
+    this.crearPareja(idJugador1,idJugador2);
+  }
+
+
+  crearPareja(idJugador1:number,idJugador2:number){
+    this.serviciosJugadores.crearPareja(idJugador1,idJugador2,this.division).subscribe(
       (result)=>{
         Swal.fire({
           icon: "success",

@@ -14,7 +14,7 @@
 
 <div id="zonaJugadores" class="row d-none">
   <h3>Seleccione Jugadores:</h3>
-  <form [formGroup]="parejaForm" (ngSubmit)="crearPareja()" class="col-6">
+  <form [formGroup]="parejaForm" (ngSubmit)="actualizarParejas()" class="col-6">
     <div class="form-group">
       <label for="jugador1">Jugador 1:</label>
       <select class="form-control selJugadores" id="jugador1" formControlName="jugador1">

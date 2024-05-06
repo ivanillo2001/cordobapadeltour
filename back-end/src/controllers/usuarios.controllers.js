@@ -120,7 +120,7 @@ export const obtenerUsuarios = async (req, res) => {
       });
     }
   };
-  export const crearPareja = async (req, res) => {
+  export const modificarPareja = async (req, res) => {
     try {
       const { idJugador1, idJugador2 } = req.body;
       const [result] = await conexion.query(
@@ -154,3 +154,15 @@ export const obtenerUsuarios = async (req, res) => {
     }
   };
 
+  export const crearPareja = async (req, res) => {
+    try {
+        const {idJugador1,idJugador2,division}= req.body;
+        console.log(req.body);
+        const result = await conexion.query("INSERT INTO pareja(id_pareja, id_jugador1, id_jugador2, fecha_creacion, es_activa, division) VALUES (NULL,?,?,NOW(),1,?)",[idJugador1,idJugador2,division]);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error en el servidor",
+        });
+    }
+  };
