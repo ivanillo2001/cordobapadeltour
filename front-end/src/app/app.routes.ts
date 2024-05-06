@@ -44,6 +44,11 @@ export const routes: Routes = [
       import('./components/crear-partido/crear-partido.component').then((c) => c.CrearPartidoComponent),
   },
   {
+    path: 'historialPartidos',
+    loadComponent: () =>
+      import('./components/historial-partidos/historial-partidos.component').then((c) => c.HistorialPartidosComponent),
+  },
+  {
     //localhost:4200
     path: '',
     redirectTo: '/home',
