@@ -6,13 +6,13 @@ export const validarUsuario = async (req, res) => {
       console.log(req.body);
   
       // Realizar la consulta para obtener los jugadores y el rol que coinciden con las credenciales
-      const result = await conexion.query("SELECT *, rol FROM jugadores WHERE username = ? AND password = ?", [user, password]);
+      const result = await conexion.query("SELECT rol FROM jugadores WHERE username = ? AND password = ?", [user, password]);
   
       // Verificar si se encontraron jugadores con las credenciales proporcionadas
       if (result.length > 0) {
         // Si se encontraron jugadores, devolver el rol y los jugadores
-        const rol = result[0].rol;
-        res.status(200).json({ valido: true, rol, jugadores: result });
+        const rol = result[0];
+        res.status(200).json({ valido: true, rol});
       } else {
         // Si no se encontraron jugadores, devolver un mensaje indicando que las credenciales son inválidas
         res.status(200).json({ valido: false, message: "Credenciales inválidas" });

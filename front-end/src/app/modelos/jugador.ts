@@ -3,5 +3,8 @@ export interface Jugador {
     nombre:string,
     idPareja:number,
     puntos:number,
-    division:number
+    division:number,
+    rol:string,
+    username:string,
+    password:string
 }

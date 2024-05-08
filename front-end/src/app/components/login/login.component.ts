@@ -28,25 +28,25 @@ export class LoginComponent implements OnInit{
     })
   }
 
-  validarDatos(){
-    this.formEnviado=true
+  validarDatos() {
+    this.formEnviado = true;
     if (this.frm.valid) {
-      const user =  this.frm.get('username')?.value
-      const password = this.frm.get('password')?.value
-      this.serv_usuario.validarUsuario(user,password).subscribe(
-        res =>{
-          console.log(res);
-          if (res.valido) {
+      const user = this.frm.get('username')?.value;
+      const password = this.frm.get('password')?.value;
+      this.serv_usuario.validarUsuario(user, password).subscribe(
+        (res: any) => {
+          if (res && res.valido === true) { // Verifica si la respuesta es válida y las credenciales son válidas
+            const rol = res.rol; // Obtienes el rol
+            let rolReal = rol[0].rol;
+            console.log(rolReal);
             Swal.fire({
               icon: "success",
-              title: "Bienvenido "+ user,
+              title: "Bienvenido " + user,
               showConfirmButton: false,
               timer: 1500
             });
-            this.cookieService.setCookie('nombreUsuario', user);
-            if (res.rol) {
-              this.cookieService.setCookie('rol', res.rol);
-            }
+            // Crear la cookie para el rol
+            this.cookieService.setCookie('rol', rolReal);
             this.location.back();
           } else {
             Swal.fire({
@@ -60,4 +60,5 @@ export class LoginComponent implements OnInit{
       );
     }
   }
-}
+  
+}  

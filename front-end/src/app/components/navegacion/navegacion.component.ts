@@ -15,17 +15,34 @@ export class NavegacionComponent implements OnInit {
   private cookieService = inject(CookieService);
   usuarios: Usuario[] = [];
   ngOnInit(): void {
-    this.comprobarUsuario();
+    this.validarSesionIniciada()
+    
   }
-  comprobarUsuario() {
+  
+  comprobarAdmin() {
     let usuExiste = false;
-    if (this.cookieService.cookieExists('nombreUsuario')) {
+    if (this.cookieService.getCookie('rol')=='admin'){
+      usuExiste = true;
+    }
+    return usuExiste;
+  }
+
+  validarSesionIniciada(){
+    let sesionIniciada = false
+    if (this.comprobarAdmin()||this.comprobarJugador()) {
+      sesionIniciada=true
+    }
+    return sesionIniciada
+  }
+  comprobarJugador(){
+    let usuExiste = false;
+    if (this.cookieService.getCookie('rol')=='jugador'){
       usuExiste = true;
     }
     return usuExiste;
   }
   cerrarSesion(){
-    this.cookieService.deleteCookie('nombreUsuario')
+    this.cookieService.deleteCookie('rol')
     this.router.navigate(['/home']);
   }
   irLogin(){

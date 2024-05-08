@@ -15,7 +15,7 @@
               <li class="nav-item">
                   <a routerLink="/segundaDivision" routerLinkActive="router-link-active" class="nav-link">Segunda División</a>
               </li>
-              <li class="nav-item dropdown" *ngIf="comprobarUsuario()">
+              <li class="nav-item dropdown" *ngIf="comprobarAdmin()">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Acciones Jugadores
                   </a>
@@ -26,19 +26,19 @@
                       <li><a routerLink="/nuevaPareja" routerLinkActive="router-link-active" class="dropdown-item" href="#">Crear nueva Pareja</a></li>
                   </ul>
               </li>
-            <li class="nav-item" *ngIf="comprobarUsuario()">
+            <li class="nav-item" *ngIf="comprobarAdmin()">
                 <a routerLink="/crearPartido" routerLinkActive="router-link-active" class="nav-link">Nuevo partido</a>
             </li>
-            <li class="nav-item" *ngIf="comprobarUsuario()">
+            <li class="nav-item" *ngIf="comprobarAdmin()||comprobarJugador()">
                 <a routerLink="/historialPartidos" routerLinkActive="router-link-active" class="nav-link">Historial de partidos</a>
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                  <a *ngIf="!comprobarUsuario()" routerLinkActive="router-link-active" class="nav-link">
+                  <a *ngIf="!validarSesionIniciada()" routerLinkActive="router-link-active" class="nav-link">
                       <button type="button" class="btn btn-primary" (click)="irLogin()">Iniciar Sesión</button>
                   </a>
-                  <a *ngIf="comprobarUsuario()" routerLinkActive="router-link-active" class="nav-link">
+                  <a *ngIf="validarSesionIniciada()" routerLinkActive="router-link-active" class="nav-link">
                       <button type="button" class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>
                   </a>
               </li>
