@@ -1,12 +1,13 @@
 "use strict"
 import { Router } from "express";
-import {validarUsuario, obtenerUsuarios, obtenerDivisiones,obtenerJugadores, crearJugador, jugadoresPrimera, jugadoresSegunda, obtenerJugador, eliminarJugador, modificarPareja, crearPartido, crearPareja, mostrarPartidos} from "../controllers/usuarios.controllers.js";
+import {validarUsuario, obtenerUsuarios, obtenerDivisiones,obtenerJugadores, crearJugador, jugadoresPrimera, jugadoresSegunda, obtenerJugador, eliminarJugador, modificarPareja, crearPartido, crearPareja, mostrarPartidos, obtenerParejasDivision} from "../controllers/usuarios.controllers.js";
 
 const router = Router();
 
 router.post("/usuario",validarUsuario);
 router.get("/usuarios",obtenerUsuarios);
 router.get("/divisiones",obtenerDivisiones);
+router.post("/divisiones/parejas",obtenerParejasDivision)
 router.get("/jugadores/mostrarJugadores",obtenerJugadores)
 router.get("/jugadores/primeraDivision",jugadoresPrimera)
 router.get("/jugadores/segundaDivision",jugadoresSegunda)

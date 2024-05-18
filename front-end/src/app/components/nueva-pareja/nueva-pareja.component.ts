@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../servicios/usuario.service';
@@ -17,6 +17,8 @@ export class NuevaParejaComponent {
   parejaForm: FormGroup;
   jugadores: Jugador[] = [];
   private division!:number
+  @ViewChild('jugador1Select') jugador1Select!: ElementRef;
+  @ViewChild('jugador2Select') jugador2Select!: ElementRef;
   constructor(private formBuilder: FormBuilder, private serviciosJugadores: UsuarioService) {
     this.divisionForm = this.formBuilder.group({
       division: ['1', [Validators.required]],
@@ -50,20 +52,27 @@ export class NuevaParejaComponent {
   }
 
   actualizarParejas() {
+    const jugador1SelectElement = this.jugador1Select.nativeElement;
+    const jugador2SelectElement = this.jugador2Select.nativeElement;
     let idJugador1 = this.parejaForm.get('jugador1')?.value;
     let idJugador2 = this.parejaForm.get('jugador2')?.value;
+    const nombre_jugador1 = jugador1SelectElement.options[jugador1SelectElement.selectedIndex].text;
+    const nombre_jugador2 = jugador2SelectElement.options[jugador2SelectElement.selectedIndex].text;
+
+    console.log(nombre_jugador1);
+    console.log(nombre_jugador2);
     this.serviciosJugadores.modificarPareja(idJugador1,idJugador2).subscribe(
       (result)=>{
       },
       (error)=>{
       }
     )
-    this.crearPareja(idJugador1,idJugador2);
+    this.crearPareja(idJugador1,idJugador2, nombre_jugador1, nombre_jugador2);
   }
 
 
-  crearPareja(idJugador1:number,idJugador2:number){
-    this.serviciosJugadores.crearPareja(idJugador1,idJugador2,this.division).subscribe(
+  crearPareja(idJugador1:number,idJugador2:number, nombre_jugador1:string,nombre_jugador2:string){
+    this.serviciosJugadores.crearPareja(idJugador1,idJugador2,this.division, nombre_jugador1,nombre_jugador2).subscribe(
       (result)=>{
         Swal.fire({
           icon: "success",

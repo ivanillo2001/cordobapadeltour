@@ -43,11 +43,11 @@ export class UsuarioService {
   modificarPareja(idJugador1:number, idJugador2:number){
     return this.http.post(this.url+'/jugadores/modificarPareja',{idJugador1,idJugador2})
   }
-  crearPareja(idJugador1:number, idJugador2:number,division:number){
-    return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2, division})
+  crearPareja(idJugador1:number, idJugador2:number,division:number, nombre_jugador1:string, nombre_jugador2:string){
+    return this.http.post(this.url+'/jugadores/crearPareja',{idJugador1,idJugador2, division, nombre_jugador1,nombre_jugador2})
   }
-  crearPartido(jugador1:number,jugador2:number,jugador3:number,jugador4:number,set1:string,set2:string,set3:string, division:number){
-    return this.http.post(this.url+'/partidos/crearPartido',{jugador1,jugador2,jugador3,jugador4,set1,set2,set3,division})
+  crearPartido(pareja1:number,pareja2:number,set1:string,set2:string,set3:string, division:number){
+    return this.http.post(this.url+'/partidos/crearPartido',{pareja1,pareja2,set1,set2,set3,division})
   }
   obtenerDivisiones(): Observable<Division[]> {
     return this.http.get<Division[]>(this.url+"/divisiones");
@@ -63,5 +63,7 @@ export class UsuarioService {
   jugadoresSegunda(): Observable<Jugador[]> {
     return this.http.get<Jugador[]>(this.url+"/jugadores/segundaDivision");
   }
-
+  obtenerParejasDivision(division:number):Observable<Pareja[]>{
+    return this.http.post<Pareja[]>(this.url+"/divisiones/parejas",{division})
+  }
 }

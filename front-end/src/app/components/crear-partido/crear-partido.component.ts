@@ -15,16 +15,16 @@ import Swal from 'sweetalert2';
 export class CrearPartidoComponent implements OnInit{
   partidoForm: FormGroup
   jugadores: Jugador[] = [];
+  parejas : Pareja[]=[]
   pareja1!: Pareja
+  pareja2!:Pareja
   division !:string
   private serviciosJugadores = inject(UsuarioService)
   constructor(private formBuilder: FormBuilder) {
     this.partidoForm = this.formBuilder.group({
       division: ['0', [Validators.required]],
-      jugador1: ['0', [Validators.required]],
-      jugador2: ['0', [Validators.required]],
-      jugador3: ['0',[ Validators.required]],
-      jugador4: ['0',[ Validators.required]],
+      pareja1: ['0', [Validators.required]],
+      pareja2: ['0', [Validators.required]],
       juegos1SetPareja1: [0,[ Validators.required]],
       juegos1SetPareja2: [0,[ Validators.required]],
       juegos2SetPareja1: [0,[ Validators.required]],
@@ -38,36 +38,26 @@ export class CrearPartidoComponent implements OnInit{
     const selectDivision = document.querySelector('#division') as HTMLSelectElement;
     selectDivision.addEventListener('change', () => {
       this.division = selectDivision.value;
-      this.cargarJugadoresDivision(parseInt(this.division));
+      this.cargarParejas(parseInt(this.division));
     });
   }  
-  cargarJugadoresDivision(idDivision:number){
-    if (idDivision == 1) {
-      this.serviciosJugadores.jugadoresPrimera().subscribe(
-        (jugadores: Jugador[]) => {
-          this.jugadores = jugadores;
-        }
-      );
-    } else {
-      this.serviciosJugadores.jugadoresSegunda().subscribe(
-        (jugadores: Jugador[]) => {
-          this.jugadores = jugadores;
-        }
-      );
-    }
-  }
 
+  cargarParejas(division:number){
+    this.serviciosJugadores.obtenerParejasDivision(division).subscribe(
+      (parejas:Pareja[])=>{
+        this.parejas=parejas;
+      }
+    )
+  }
   crearPartido() {
     if (this.partidoForm.valid) {
-      let jugador1 = this.partidoForm.get('jugador1')!.value;
-      let jugador2 = this.partidoForm.get('jugador2')!.value;
-      let jugador3 = this.partidoForm.get('jugador3')!.value;
-      let jugador4 = this.partidoForm.get('jugador4')!.value;
+      let pareja1 = this.partidoForm.get('pareja1')!.value;
+      let pareja2 = this.partidoForm.get('pareja2')!.value;
       let set1 = this.partidoForm.get('juegos1SetPareja1')!.value + ' - '+this.partidoForm.get('juegos1SetPareja2')!.value ;
       let set2 = this.partidoForm.get('juegos2SetPareja1')!.value + ' - '+this.partidoForm.get('juegos2SetPareja2')!.value ;
       let set3 = this.partidoForm.get('juegos3SetPareja1')!.value + ' - '+this.partidoForm.get('juegos3SetPareja2')!.value ;
       
-      this.serviciosJugadores.crearPartido(jugador1,jugador2,jugador3,jugador4,set1,set2,set3,parseInt(this.division)).subscribe({
+      this.serviciosJugadores.crearPartido(parseInt(pareja1),parseInt(pareja2),set1,set2,set3,parseInt(this.division)).subscribe({
         next:(data) => {
           console.log('Partido creado con éxito:', data);
           Swal.fire({

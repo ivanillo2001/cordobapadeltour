@@ -143,9 +143,9 @@ export const obtenerUsuarios = async (req, res) => {
 
   export const crearPartido = async (req, res) => {
     try {
-        const {jugador1,jugador2,jugador3,jugador4,set1,set2,set3, division}= req.body;
+        const {pareja1,pareja2,set1,set2,set3, division}= req.body;
         console.log(req.body);
-        const result = await conexion.query("INSERT INTO partido(idPartido, idJugador1, idJugador2, idJugador3, idJugador4,set1,set2,set3, division) VALUES (NULL,?,?,?,?,?,?,?,?)",[jugador1,jugador2,jugador3,jugador4,set1,set2,set3, division]);
+        const result = await conexion.query("INSERT INTO partido(idPartido,set1,set2,set3, division,id_pareja1,id_pareja2) VALUES (NULL,?,?,?,?,?,?)",[set1,set2,set3, division,pareja1,pareja2]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
@@ -156,9 +156,9 @@ export const obtenerUsuarios = async (req, res) => {
 
   export const crearPareja = async (req, res) => {
     try {
-        const {idJugador1,idJugador2,division}= req.body;
+        const {idJugador1,idJugador2,division,nombre_jugador1,nombre_jugador2}= req.body;
         console.log(req.body);
-        const result = await conexion.query("INSERT INTO pareja(id_pareja, id_jugador1, id_jugador2, fecha_creacion, es_activa, division) VALUES (NULL,?,?,NOW(),1,?)",[idJugador1,idJugador2,division]);
+        const result = await conexion.query("INSERT INTO pareja(id_pareja, id_jugador1, id_jugador2, fecha_creacion, es_activa, division,nombre_jugador1, nombre_jugador2) VALUES (NULL,?,?,NOW(),1,?,?,?)",[idJugador1,idJugador2,division,nombre_jugador1,nombre_jugador2]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
@@ -182,3 +182,17 @@ export const obtenerUsuarios = async (req, res) => {
       });
     }
   };
+
+  export const obtenerParejasDivision = async(req,res)=>{
+    try {
+      const {division}= req.body;
+      const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion asc limit 10",[division]);
+      res.status(200).json(result)
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
+    }
+  }

@@ -7,38 +7,26 @@
                 <option value="0">Selecciona una division</option>
                 <option value="1">Primera división</option>
                 <option value="2">Segunda división</option>
-              </select>
+            </select>
         </div>
         <div class="row mt-md-5">
             <div class="col-md-4" id="pareja1">
                 <h1>Pareja 1</h1>
-                <select class="form-control" id="jugador1" formControlName="jugador1">
-                    <option value="0">Indique el jugador</option>
-                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
-                        {{ jugador.nombre }}
-                      </option>
-                </select>
-                <select class="form-control mt-5" id="jugador2" formControlName="jugador2">
-                    <option value="0">Indique el jugador</option>
-                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
-                        {{ jugador.nombre }}
-                      </option>
+                <select class="form-control mt-5" id="pareja1" formControlName="pareja1">
+                    <option value="0">Indique la pareja</option>
+                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
+                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
+                    </option>
                 </select>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4" id="pareja2">
                 <h1>Pareja 2</h1>
-                <select class="form-control" id="jugador3" formControlName="jugador3">
-                    <option value="0">Indique el jugador</option>
-                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
-                        {{ jugador.nombre }}
-                      </option>
-                </select>
-                <select class="form-control mt-5" id="jugador4" formControlName="jugador4">
-                    <option value="0">Indique el jugador</option>
-                    <option *ngFor="let jugador of jugadores" [value]="jugador.idJugador">
-                        {{ jugador.nombre }}
-                      </option>
+                <select class="form-control mt-5" id="pareja2" formControlName="pareja2">
+                    <option value="0">Indique la pareja</option>
+                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
+                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -46,39 +34,45 @@
             <h1>RESULTADO</h1>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1" placeholder="Primer Set Pareja1">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Primer Set Pareja1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2" placeholder="Primer Set Pareja2">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Primer Set Pareja2" />
                 </div>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1" placeholder="Segundo Set Pareja1">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Segundo Set Pareja1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2" placeholder="Segundo Set Pareja2">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Segundo Set Pareja2" />
                 </div>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1" placeholder="Tercer Set Pareja1">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Tercer Set Pareja1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2" placeholder="Tercer Set Pareja2">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Tercer Set Pareja2" />
                 </div>
             </div>
         </div>
