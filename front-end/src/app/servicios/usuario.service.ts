@@ -5,6 +5,7 @@ import { Usuario } from '../modelos/usuario';
 import { Division } from '../modelos/divisiones';
 import { Jugador } from '../modelos/jugador';
 import { Pareja } from '../modelos/pareja';
+import { Partido } from '../modelos/partidos';
 @Injectable({
   providedIn: 'root'
 })
@@ -65,5 +66,12 @@ export class UsuarioService {
   }
   obtenerParejasDivision(division:number):Observable<Pareja[]>{
     return this.http.post<Pareja[]>(this.url+"/divisiones/parejas",{division})
+  }
+
+  obtenerPartidos(division:number):Observable<Partido[]>{
+    return this.http.post<Partido[]>(this.url+"/partidos/mostrarPartidos",{division})
+  }
+  obtenerJugadoresParejas(idPareja:number):Observable<Pareja[]>{
+    return this.http.post<Pareja[]>(this.url+"/parejas/jugadoresParejas",{idPareja})
   }
 }

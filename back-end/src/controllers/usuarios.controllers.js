@@ -171,8 +171,8 @@ export const obtenerUsuarios = async (req, res) => {
     try {
       const { division } = req.body;
 
-      const [result] = await conexion.query("SELECT * FROM jugadores WHERE division = ?", [division]);
-      
+      const [result] = await conexion.query("SELECT * FROM partido WHERE division = ?", [division]);
+      console.log(req.body);
       res.status(200).json(result);
       console.log(result);
     } catch (error) {
@@ -187,6 +187,20 @@ export const obtenerUsuarios = async (req, res) => {
     try {
       const {division}= req.body;
       const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion asc limit 5",[division]);
+      res.status(200).json(result)
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
+    }
+  }
+
+  export const obtenerJugadoresParejas= async(req,res)=>{
+    try {
+      const {idPareja}= req.body;
+      const [result]= await conexion.query("SELECT * FROM pareja WHERE id_pareja = ?",[idPareja]);
       res.status(200).json(result)
       console.log(result);
     } catch (error) {
