@@ -53,8 +53,8 @@ export class UsuarioService {
     return this.http.get<Division[]>(this.url+"/divisiones");
   }
 
-  crearJugador(nombre:string,puntos:number,division:number){
-    return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division});
+  crearJugador(nombre:string,puntos:number,division:number, usuario:string,password:string){
+    return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division,usuario,password});
   }
 
   jugadoresPrimera(): Observable<Jugador[]> {

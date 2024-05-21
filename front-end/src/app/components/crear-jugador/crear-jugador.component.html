@@ -15,7 +15,17 @@
             <label for="divisiones">División del jugador</label>
             <select class="form-control" id="divisiones" formControlName="division">
             </select>
-          </div>
+        </div>
+        <div class="form-group mt-4">
+          <label for="usuario">Usuario del jugador</label>
+          <input type="text" class="form-control" id="usuario" formControlName="usuario">
+          <small *ngIf="jugadorForm.get('usuario')?.errors?.['required']" id="errorUsuario">Campo obligatorio</small>
+        </div>
+        <div class="form-group mt-4">
+          <label for="usuario">Contraseña</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <small *ngIf="jugadorForm.get('password')?.errors?.['required']" id="errorPassword">Campo obligatorio</small>
+        </div>
         <button type="submit" class="btn btn-primary mt-2">Crear Jugador</button>
       </form>
 </div>

@@ -17,7 +17,9 @@ export class CrearJugadorComponent implements OnInit{
     this.jugadorForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       puntos: ['', [Validators.required]],
-      division: ['1',[ Validators.required]]
+      division: ['1',[ Validators.required]],
+      usuario: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
   private cookieService = inject(CookieService)
@@ -29,7 +31,7 @@ export class CrearJugadorComponent implements OnInit{
 
   validarSesionIniciada(){
     let sesionIniciada= false
-    if (this.cookieService.cookieExists('nombreUsuario')) {
+    if (this.cookieService.cookieExists('rol')) {
       sesionIniciada= true
     }
     return sesionIniciada
@@ -58,7 +60,10 @@ export class CrearJugadorComponent implements OnInit{
       const nombre = this.jugadorForm.get('nombre')!.value;
       const puntos = this.jugadorForm.get('puntos')!.value;
       const division = this.jugadorForm.get('division')!.value;
-      this.servicioUsuarios.crearJugador(nombre, puntos, division).subscribe({
+      const usuario = this.jugadorForm.get('usuario')!.value;
+      const password = this.jugadorForm.get('password')!.value;
+
+      this.servicioUsuarios.crearJugador(nombre, puntos, division,usuario,password).subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);
           Swal.fire({
@@ -90,10 +95,10 @@ export class CrearJugadorComponent implements OnInit{
     
   }
 
-  guardarJugador(nombre: string, puntos: string, division: string) {
+  guardarJugador(nombre: string, puntos: string, division: string, usuario:string, password:string) {
     let puntosInteger = parseInt(puntos);
     let divisionInteger = parseInt(division);
-    this.servicioUsuarios.crearJugador(nombre, puntosInteger, divisionInteger)
+    this.servicioUsuarios.crearJugador(nombre, puntosInteger, divisionInteger, usuario, password)
       .subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);

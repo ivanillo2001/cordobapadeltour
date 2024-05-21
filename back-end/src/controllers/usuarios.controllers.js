@@ -58,8 +58,8 @@ export const obtenerUsuarios = async (req, res) => {
   };
   export const crearJugador = async (req, res) => {
     try {
-        const {nombre, puntos, division}= req.body
-        const [result] = await conexion.query("INSERT INTO `jugadores`(`idJugador`, `nombre`, `idPareja`, `puntos`, `division`) VALUES (NULL,?,NULL,?,?)",[nombre,puntos,division]);
+        const {nombre, puntos, division,usuario,password}= req.body
+        const [result] = await conexion.query("INSERT INTO `jugadores`(`idJugador`, `nombre`, `idPareja`, `puntos`, `division`,`username`,`password`) VALUES (NULL,?,NULL,?,?,?,?)",[nombre,puntos,division,usuario, password]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({
@@ -186,7 +186,7 @@ export const obtenerUsuarios = async (req, res) => {
   export const obtenerParejasDivision = async(req,res)=>{
     try {
       const {division}= req.body;
-      const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion asc limit 10",[division]);
+      const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion asc limit 5",[division]);
       res.status(200).json(result)
       console.log(result);
     } catch (error) {
