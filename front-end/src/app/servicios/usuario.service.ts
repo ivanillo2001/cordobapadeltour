@@ -58,6 +58,10 @@ export class UsuarioService {
     return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division,usuario,password});
   }
 
+  editarJugador(idJugador:number, nombre:string, puntos:number, division:number, rol:string){
+    return this.http.post(this.url+"/jugadores/editarJugador",{idJugador,nombre,puntos,division,rol});
+  }
+
   jugadoresPrimera(): Observable<Jugador[]> {
     return this.http.get<Jugador[]>(this.url+"/jugadores/primeraDivision");
   }

@@ -68,6 +68,21 @@ export const obtenerUsuarios = async (req, res) => {
     }
   };
 
+  export const editarJugador = async (req, res) => {
+    try {
+      const { idJugador, nombre, puntos, division, rol } = req.body;
+      const [result] = await conexion.query(
+        "UPDATE jugadores SET nombre = ?, puntos = ?, division = ?, rol = ? WHERE idJugador = ?",
+        [nombre, puntos, division, rol, idJugador]
+      );
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json({
+        message: "Error en el servidor",
+      });
+    }
+  };
+
   export const jugadoresPrimera = async (req, res) => {
     try {
         const [result] = await conexion.query("SELECT * FROM jugadores where division = 1 order by puntos desc");

@@ -29,6 +29,11 @@ export const routes: Routes = [
       import('./components/crear-jugador/crear-jugador.component').then((c) => c.CrearJugadorComponent),
   },
   {
+    path: 'editarJugador',
+    loadComponent: () =>
+      import('./components/editar-jugador/editar-jugador.component').then((c) => c.EditarJugadorComponent),
+  },
+  {
     path: 'eliminarJugador',
     loadComponent: () =>
       import('./components/eliminar-jugador/eliminar-jugador.component').then((c) => c.EliminarJugadorComponent),
@@ -47,6 +52,11 @@ export const routes: Routes = [
     path: 'historialPartidos',
     loadComponent: () =>
       import('./components/historial-partidos/historial-partidos.component').then((c) => c.HistorialPartidosComponent),
+  },
+  {
+    path: 'ayuda',
+    loadComponent: () =>
+      import('./components/ayuda/ayuda.component').then((c) => c.AyudaComponent),
   },
   {
     //localhost:4200

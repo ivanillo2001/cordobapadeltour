@@ -1,0 +1,38 @@
+<h1>Editar Jugador</h1>
+<h3>Escribe el nombre del jugador que quieres editar</h3>
+<form [formGroup]="jugadorForm" (ngSubmit)="buscarJugador()">
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="nombreJugador" id="nombreJugador" placeholder="Nombre del jugador">
+        <small *ngIf="jugadorForm.get('nombreJugador')?.errors?.['required']" id="errorNombre">Campo obligatorio</small>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-2">Buscar Jugador</button>
+</form>
+
+<div id="datosJugador" class="mt-5 d-none">
+    <h4>Edita los campos que desees</h4>
+    <form [formGroup]="editarForm" (ngSubmit)="editarJugador()">
+        <div class="form-group">
+            <label for="nombre_jugador">Nombre del jugador</label>
+            <input type="text" class="form-control" id="nombre_jugador" formControlName="nombre_jugador" placeholder="Nombre del jugador">
+        </div>
+        <div class="form-group mt-3">
+            <label for="puntos_jugador">Puntos del jugador</label>
+            <input type="number" class="form-control" id="puntos_jugador" formControlName="puntos_jugador" placeholder="Puntos del jugador">
+        </div>
+        <div class="form-group mt-3">
+            <label for="division_jugador">División del jugador</label>
+            <select class="form-control" id="division_jugador" formControlName="division_jugador">
+                <option value="1">Primera División</option>
+                <option value="2">Segunda División</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label for="rol_jugador">Rol del jugador</label>
+            <select class="form-control" id="rol_jugador" formControlName="rol_jugador">
+                <option value="admin">admin</option>
+                <option value="jugador">jugador</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-2">Editar Jugador</button>
+    </form>
+</div>
