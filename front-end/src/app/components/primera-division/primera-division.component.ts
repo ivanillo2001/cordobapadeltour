@@ -34,11 +34,6 @@ export class PrimeraDivisionComponent implements OnInit{
           cardJugador.classList.add("col-md-6")
           cardJugador.classList.add("m-md-5")
           cardJugador.classList.add("mt-3")
-          cardJugador.style.textAlign='center'
-          cardJugador.style.backgroundColor = "#C2E0EC";
-          cardJugador.style.borderRadius = "15px";
-          cardJugador.style.width="350px"
-          cardJugador.style.color="black"
           cardJugador.append(imagen)
           cardJugador.append(nombre)
           cardJugador.append(puntos)
