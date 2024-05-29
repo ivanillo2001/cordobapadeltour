@@ -50,6 +50,11 @@
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <img class="banderas mt-2" src="../../../assets/imagen/spain.jpg" alt="Español" id="banderaEspaña" width="50px">
+                    <img class="banderas mt-2" src="../../../assets/imagen/eeuu.png" alt="Inglés" id="banderaEeuu" width="50px">
+
+                </li>
+                <li class="nav-item">
                     <a *ngIf="!validarSesionIniciada()" routerLinkActive="router-link-active" class="nav-link">
                         <button type="button" class="btn btn-primary" (click)="irLogin()">Iniciar Sesión</button>
                     </a>

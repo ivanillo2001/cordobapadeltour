@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Jugador } from '../../modelos/jugador';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-primera-division',
   standalone: true,
@@ -10,8 +11,21 @@ import { Jugador } from '../../modelos/jugador';
 })
 export class PrimeraDivisionComponent implements OnInit{
   private servicio = inject(UsuarioService)
+  cookieServices = inject(CookieService)
+  language!:string
   ngOnInit(): void {
     this.cargarJugadores()
+    this.validarIdioma();
+  }
+
+  validarIdioma(){
+    this.language= this.cookieServices.getCookie('language')
+    if (this.language=='spanish') {
+      document.querySelector("#titulo_english")?.classList.add("d-none")
+    }else{
+      document.querySelector("#titulo_espanol")?.classList.add("d-none")
+
+    }
   }
 
   cargarJugadores(){
@@ -23,7 +37,12 @@ export class PrimeraDivisionComponent implements OnInit{
           nombre.textContent = jugador.nombre;
           zonaJugadores.append(nombre);
           const puntos = document.createElement("h3");
-          puntos.textContent = jugador.puntos.toString() +' puntos'
+          if (this.language=='spanish') {
+            puntos.textContent = jugador.puntos.toString() +' puntos'
+          }else{
+          puntos.textContent = jugador.puntos.toString() +' points'
+
+          }
           zonaJugadores.append(puntos);
           const imagen = document.createElement("img")
           imagen.classList.add("mt-3")

@@ -16,9 +16,20 @@ export class NavegacionComponent implements OnInit {
   usuarios: Usuario[] = [];
   ngOnInit(): void {
     this.validarSesionIniciada()
-    
+    this.activarBotones()
   }
-  
+  activarBotones() {
+    let banderaSpain = document.querySelector("#banderaEspaña") as HTMLImageElement;
+    banderaSpain?.addEventListener("click", () => {
+        this.cookieService.setCookie('language', 'spanish');
+        window.location.reload()
+    });
+    let banderaEeuu =document.querySelector("#banderaEeuu") as HTMLImageElement;
+    banderaEeuu?.addEventListener("click", () => {
+      this.cookieService.setCookie('language', 'english');
+      window.location.reload()
+  });
+  }
   comprobarAdmin() {
     let usuExiste = false;
     if (this.cookieService.getCookie('rol')=='admin'){
