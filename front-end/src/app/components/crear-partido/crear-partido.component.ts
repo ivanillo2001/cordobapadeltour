@@ -22,13 +22,13 @@ export class CrearPartidoComponent implements OnInit{
   private serviciosJugadores = inject(UsuarioService)
   constructor(private formBuilder: FormBuilder) {
     this.partidoForm = this.formBuilder.group({
-      division: ['0', [Validators.required]],
+      division: ['', [Validators.required]],
       pareja1: ['0', [Validators.required]],
       pareja2: ['0', [Validators.required]],
-      juegos1SetPareja1: [0,[ Validators.required]],
-      juegos1SetPareja2: [0,[ Validators.required]],
-      juegos2SetPareja1: [0,[ Validators.required]],
-      juegos2SetPareja2: [0,[ Validators.required]],
+      juegos1SetPareja1: [,[ Validators.required]],
+      juegos1SetPareja2: [,[ Validators.required]],
+      juegos2SetPareja1: [,[ Validators.required]],
+      juegos2SetPareja2: [,[ Validators.required]],
       juegos3SetPareja1: [0],
       juegos3SetPareja2: [0],
       
