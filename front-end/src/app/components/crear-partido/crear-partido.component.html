@@ -1,5 +1,5 @@
-<h1>Crea un nuevo partido</h1>
-<div class="row" id="formulario">
+<div *ngIf="validar_lenguage()==='spanish'" class="row" id="formulario">
+    <h1>Crea un nuevo partido</h1>
     <form [formGroup]="partidoForm" (ngSubmit)="crearPartido()">
         <div class="col-md-4">
             <h2>Indica la división</h2>
@@ -79,3 +79,84 @@
         <button type="submit" class="btn btn-primary mt-5">Crear Partido</button>
     </form>
 </div>
+<!-- <div *ngIf="validar_lenguage()=='english'" class="row" id="formulario">
+    <h1>Create a new Match</h1>
+    <form [formGroup]="partidoForm" (ngSubmit)="crearPartido()">
+        <div class="col-md-4">
+            <h2>Choose the division</h2>
+            <select class="form-control" id="division" formControlName="division">
+                <option value="0">Selecciona una division</option>
+                <option value="1">First Division</option>
+                <option value="2">Second Division</option>
+            </select>
+        </div>
+        <div class="row mt-md-5">
+            <div class="col-md-4" id="pareja1">
+                <h1>Couple 1</h1>
+                <select class="form-control mt-5" id="pareja1" formControlName="pareja1">
+                    <option value="0">Choose the couple</option>
+                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
+                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4" id="pareja2">
+                <h1>Couple 2</h1>
+                <select class="form-control mt-5" id="pareja2" formControlName="pareja2">
+                    <option value="0">Choose the couple</option>
+                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
+                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-md-5">
+            <h1>Final Score</h1>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
+                        placeholder="First Set Couple 1" />
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
+                        placeholder="First Set Couple 2" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Second Set Couple 1" />
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Second Set Couple 2" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Third Set Couple 1" />
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Third Set Couple 2" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">Create match</button>
+    </form>
+</div> -->

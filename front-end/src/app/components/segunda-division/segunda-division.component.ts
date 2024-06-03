@@ -51,7 +51,7 @@ export class SegundaDivisionComponent implements OnInit{
           zonaJugadores.append(puntos);
           const imagen = document.createElement("img")
           imagen.classList.add("mt-3")
-          imagen.src="../../../assets/imagen/imagen.jpg"
+          imagen.src="../../../assets/camisetas/"+jugador.foto
           imagen.width=200
           const cardJugador = document.createElement("div")
           cardJugador.classList.add("cardJugador")

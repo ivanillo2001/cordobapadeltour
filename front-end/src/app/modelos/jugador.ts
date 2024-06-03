@@ -6,5 +6,6 @@ export interface Jugador {
     division:number,
     rol:string,
     username:string,
-    password:string
+    password:string,
+    foto:string
 }

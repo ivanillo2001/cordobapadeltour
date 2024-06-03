@@ -1,13 +1,33 @@
+#inicio{
+    background-image: url("../../../assets/imagen/foto.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+#titulo-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    padding: 25%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a slight shadow */
+    text-align: center;
+    opacity: 50%;
+}
+
+#titulo {
+    margin: 0;
+}
 
 #titulo, #directivos{
-    margin-top: 3vh;
     text-align: center;
     justify-content: center;
     font-family: "Permanent Marker", cursive;
     font-weight: 400;
     font-size: 7vh;
     font-style: normal;
-    color: rgb(72, 146, 226);
+    color: rgb(0, 0, 0);
 }
 #imagenPortada{
     max-width: 75%; /* La imagen nunca será más grande que su contenedor */

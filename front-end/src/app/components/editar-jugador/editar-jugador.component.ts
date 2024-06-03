@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../servicios/usuario.service';
 import Swal from 'sweetalert2';
+import { CookieService } from '../../servicios/cookie-service.service';
 
 @Component({
 	selector: 'app-editar-jugador',
@@ -12,10 +13,11 @@ import Swal from 'sweetalert2';
 	templateUrl: './editar-jugador.component.html',
 	styleUrl: './editar-jugador.component.css'
 })
-export class EditarJugadorComponent {
+export class EditarJugadorComponent implements OnInit{
   router = inject(Router)
   idJugador!:number
   private serviciosJugador = inject(UsuarioService);
+  cookie_service = inject(CookieService)
   jugadorForm:FormGroup;
   editarForm:FormGroup;
   constructor(private formBuilder: FormBuilder) {
@@ -28,6 +30,13 @@ export class EditarJugadorComponent {
 			division_jugador:['',[Validators.required]],
 			rol_jugador:['',[Validators.required]],
 		})
+  }
+  ngOnInit(): void {
+    this.validar_lenguage()
+  }
+  validar_lenguage(){
+    let lenguage = this.cookie_service.getCookie('language')
+    return lenguage
   }
 
 	buscarJugador(){

@@ -1,6 +1,6 @@
-<h1>Editar Jugador</h1>
-<h3>Escribe el nombre del jugador que quieres editar</h3>
-<form [formGroup]="jugadorForm" (ngSubmit)="buscarJugador()">
+<h1 *ngIf="validar_lenguage()=='spanish'">Editar Jugador</h1>
+<h3 *ngIf="validar_lenguage()=='spanish'">Escribe el nombre del jugador que quieres editar</h3>
+<form *ngIf="validar_lenguage()=='spanish'" [formGroup]="jugadorForm" (ngSubmit)="buscarJugador()">
     <div class="form-group">
         <input type="text" class="form-control" formControlName="nombreJugador" id="nombreJugador" placeholder="Nombre del jugador">
         <small *ngIf="jugadorForm.get('nombreJugador')?.errors?.['required']" id="errorNombre">Campo obligatorio</small>
@@ -8,7 +8,7 @@
     <button type="submit" class="btn btn-outline-primary mt-2">Buscar Jugador</button>
 </form>
 
-<div id="datosJugador" class="mt-5 d-none">
+<div *ngIf="validar_lenguage()=='spanish'" id="datosJugador" class="mt-5 d-none">
     <h4>Edita los campos que desees</h4>
     <form [formGroup]="editarForm" (ngSubmit)="editarJugador()">
         <div class="form-group">
@@ -34,5 +34,44 @@
             </select>
         </div>
         <button type="submit" class="btn btn-outline-primary mt-2">Editar Jugador</button>
+    </form>
+</div>
+
+<h1 *ngIf="validar_lenguage()=='english'">Update Player</h1>
+<h3 *ngIf="validar_lenguage()=='english'">Type the player's name</h3>
+<form *ngIf="validar_lenguage()=='english'" [formGroup]="jugadorForm" (ngSubmit)="buscarJugador()">
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="nombreJugador" id="nombreJugador" placeholder="Player's name">
+        <small *ngIf="jugadorForm.get('nombreJugador')?.errors?.['required']" id="errorNombre">Required</small>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-2">Search player</button>
+</form>
+
+<div *ngIf="validar_lenguage()=='english'" id="datosJugador" class="mt-5 d-none">
+    <h4>Modify the fields you want</h4>
+    <form [formGroup]="editarForm" (ngSubmit)="editarJugador()">
+        <div class="form-group">
+            <label for="nombre_jugador">Player's name</label>
+            <input type="text" class="form-control" id="nombre_jugador" formControlName="nombre_jugador" placeholder="Player's name">
+        </div>
+        <div class="form-group mt-3">
+            <label for="puntos_jugador">Player's points</label>
+            <input type="number" class="form-control" id="puntos_jugador" formControlName="puntos_jugador" placeholder="Player's points">
+        </div>
+        <div class="form-group mt-3">
+            <label for="division_jugador">Player division</label>
+            <select class="form-control" id="division_jugador" formControlName="division_jugador">
+                <option value="1">First Division</option>
+                <option value="2">Second Division</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label for="rol_jugador">Player's role</label>
+            <select class="form-control" id="rol_jugador" formControlName="rol_jugador">
+                <option value="admin">admin</option>
+                <option value="jugador">player</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-2">Modify player</button>
     </form>
 </div>

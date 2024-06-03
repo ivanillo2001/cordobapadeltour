@@ -5,6 +5,7 @@ import { UsuarioService } from '../../servicios/usuario.service';
 import { Jugador } from '../../modelos/jugador';
 import { Pareja } from '../../modelos/pareja';
 import Swal from 'sweetalert2';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-crear-partido',
   standalone: true,
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2';
   styleUrl: './crear-partido.component.css'
 })
 export class CrearPartidoComponent implements OnInit{
+  cookie_service = inject(CookieService)
   partidoForm: FormGroup
   jugadores: Jugador[] = [];
   parejas : Pareja[]=[]
@@ -22,13 +24,13 @@ export class CrearPartidoComponent implements OnInit{
   private serviciosJugadores = inject(UsuarioService)
   constructor(private formBuilder: FormBuilder) {
     this.partidoForm = this.formBuilder.group({
-      division: ['', [Validators.required]],
+      division: ['0', [Validators.required]],
       pareja1: ['0', [Validators.required]],
       pareja2: ['0', [Validators.required]],
-      juegos1SetPareja1: [,[ Validators.required]],
-      juegos1SetPareja2: [,[ Validators.required]],
-      juegos2SetPareja1: [,[ Validators.required]],
-      juegos2SetPareja2: [,[ Validators.required]],
+      juegos1SetPareja1: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
+      juegos1SetPareja2: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
+      juegos2SetPareja1: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
+      juegos2SetPareja2: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
       juegos3SetPareja1: [0],
       juegos3SetPareja2: [0],
       
@@ -40,7 +42,13 @@ export class CrearPartidoComponent implements OnInit{
       this.division = selectDivision.value;
       this.cargarParejas(parseInt(this.division));
     });
+    this.validar_lenguage()
   }  
+
+  validar_lenguage(){
+    let lenguage = this.cookie_service.getCookie('language')
+    return lenguage
+  }
 
   cargarParejas(division:number){
     this.serviciosJugadores.obtenerParejasDivision(division).subscribe(
@@ -78,6 +86,14 @@ export class CrearPartidoComponent implements OnInit{
           });
         }
       })
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "No se ha podido crear el partido",
+        text: "Revisa que todos los campos estén rellenos o los datos sean correctos",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   }
 }

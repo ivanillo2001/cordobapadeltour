@@ -27,6 +27,12 @@ export class CrearJugadorComponent implements OnInit{
   ngOnInit(): void {
     this.validarSesionIniciada()
     this.cargarDivisiones()
+    this.validar_lenguage()
+
+  }
+  validar_lenguage(){
+    let lenguage = this.cookieService.getCookie('language')
+    return lenguage
   }
 
   validarSesionIniciada(){
