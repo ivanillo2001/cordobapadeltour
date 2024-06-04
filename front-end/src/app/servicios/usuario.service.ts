@@ -54,8 +54,8 @@ export class UsuarioService {
     return this.http.get<Division[]>(this.url+"/divisiones");
   }
 
-  crearJugador(nombre:string,puntos:number,division:number, usuario:string,password:string){
-    return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division,usuario,password});
+  crearJugador(nombre:string,puntos:number,division:number, usuario:string,password:string, imagen:string){
+    return this.http.post(this.url+"/jugadores/crearJugador",{nombre,puntos,division,usuario,password,imagen});
   }
 
   editarJugador(idJugador:number, nombre:string, puntos:number, division:number, rol:string){

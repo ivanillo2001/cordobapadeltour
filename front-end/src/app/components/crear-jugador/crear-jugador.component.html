@@ -26,7 +26,7 @@
           <input type="password" class="form-control" id="password" formControlName="password">
           <small *ngIf="jugadorForm.get('password')?.errors?.['required']" id="errorPassword">Campo obligatorio</small>
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Crear Jugador</button>
+        <button type="submit" class="btn btn-primary mt-4">Crear Jugador</button>
       </form>
 </div>
 <div *ngIf="validarSesionIniciada() && validar_lenguage()=='english'" id="contenido">
@@ -57,7 +57,7 @@
         <input type="password" class="form-control" id="password" formControlName="password">
         <small *ngIf="jugadorForm.get('password')?.errors?.['required']" id="errorPassword">Required</small>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Create player</button>
+      <button type="submit" class="btn btn-primary mt-4">Create player</button>
     </form>
 </div>
 

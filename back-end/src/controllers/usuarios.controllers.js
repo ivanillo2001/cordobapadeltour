@@ -58,8 +58,8 @@ export const obtenerUsuarios = async (req, res) => {
   };
   export const crearJugador = async (req, res) => {
     try {
-        const {nombre, puntos, division,usuario,password}= req.body
-        const [result] = await conexion.query("INSERT INTO `jugadores`(`idJugador`, `nombre`, `idPareja`, `puntos`, `division`,`username`,`password`) VALUES (NULL,?,NULL,?,?,?,?)",[nombre,puntos,division,usuario, password]);
+        const {nombre, puntos, division,usuario,password, imagen}= req.body
+        const [result] = await conexion.query("INSERT INTO `jugadores`(`idJugador`, `nombre`, `idPareja`, `puntos`, `division`,`username`,`password`,`foto`) VALUES (NULL,?,NULL,?,?,?,?,?)",[nombre,puntos,division,usuario, password, imagen]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({

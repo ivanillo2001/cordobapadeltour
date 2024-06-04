@@ -68,8 +68,9 @@ export class CrearJugadorComponent implements OnInit{
       const division = this.jugadorForm.get('division')!.value;
       const usuario = this.jugadorForm.get('usuario')!.value;
       const password = this.jugadorForm.get('password')!.value;
+      const imagen = 'prueba.png'
 
-      this.servicioUsuarios.crearJugador(nombre, puntos, division,usuario,password).subscribe({
+      this.servicioUsuarios.crearJugador(nombre, puntos, division,usuario,password,imagen).subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);
           Swal.fire({
@@ -101,10 +102,10 @@ export class CrearJugadorComponent implements OnInit{
     
   }
 
-  guardarJugador(nombre: string, puntos: string, division: string, usuario:string, password:string) {
+  guardarJugador(nombre: string, puntos: string, division: string, usuario:string, password:string,imagen:string) {
     let puntosInteger = parseInt(puntos);
     let divisionInteger = parseInt(division);
-    this.servicioUsuarios.crearJugador(nombre, puntosInteger, divisionInteger, usuario, password)
+    this.servicioUsuarios.crearJugador(nombre, puntosInteger, divisionInteger, usuario, password,imagen)
       .subscribe({
         next:(data) => {
           console.log('Jugador creado con éxito:', data);
