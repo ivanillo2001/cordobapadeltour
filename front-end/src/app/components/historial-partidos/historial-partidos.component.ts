@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Partido } from '../../modelos/partidos';
 import { Pareja } from '../../modelos/pareja';
 import { forkJoin } from 'rxjs';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-historial-partidos',
   standalone: true,
@@ -12,14 +13,22 @@ import { forkJoin } from 'rxjs';
   templateUrl: './historial-partidos.component.html',
   styleUrl: './historial-partidos.component.css'
 })
-export class HistorialPartidosComponent {
+export class HistorialPartidosComponent implements OnInit{
   divisionForm: FormGroup;
   private division!:number
   partidos:Partido[]=[]
+  cookie_service = inject(CookieService)
   constructor(private formBuilder: FormBuilder, private serviciosJugadores: UsuarioService) {
     this.divisionForm = this.formBuilder.group({
       division: ['1', [Validators.required]],
     });
+  }
+  ngOnInit(): void {
+    this.validar_lenguage()
+  }
+  validar_lenguage(){
+    let lenguage = this.cookie_service.getCookie('language')
+    return lenguage
   }
   buscarPartidos() {
     const zonaPartidos = document.getElementById('zonaPartidos');

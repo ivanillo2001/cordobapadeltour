@@ -8,58 +8,80 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a routerLink="/home" routerLinkActive="router-link-active" class="nav-link active"
-                        aria-current="page" href="#">Home</a>
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/home" routerLinkActive="router-link-active" class="nav-link active"
+                        aria-current="page" href="#">Inicio</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/home" routerLinkActive="router-link-active" class="nav-link active"
+                    aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/primeraDivision" routerLinkActive="router-link-active" class="nav-link">Primera
-                        División</a>
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/primeraDivision" routerLinkActive="router-link-active" class="nav-link">Primera División</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/primeraDivision" routerLinkActive="router-link-active" class="nav-link">First Division</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/segundaDivision" routerLinkActive="router-link-active" class="nav-link">Segunda
-                        División</a>
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/segundaDivision" routerLinkActive="router-link-active" class="nav-link">Segunda División</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/segundaDivision" routerLinkActive="router-link-active" class="nav-link">Second Division</a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="comprobarAdmin()">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" class="nav-link dropdown-toggle" href="#" role="button"  data-bs-toggle="dropdown"aria-expanded="false">
                         Acciones Jugadores
                     </a>
+                    <a *ngIf="validar_lenguage()=='english'" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Player's actions
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a routerLink="/addJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                        <li><a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/addJugador" routerLinkActive="router-link-active" class="dropdown-item"
                                 href="#">Crear nuevo jugador</a></li>
-                        <li><a routerLink="/editarJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                        <li><a *ngIf="validar_lenguage()=='english'" routerLink="/addJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                                href="#">Create a new Player</a></li>
+                        <li><a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/editarJugador" routerLinkActive="router-link-active" class="dropdown-item"
                                 href="#">Editar Jugador</a></li>
-                        <li><a routerLink="/eliminarJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                        <li><a *ngIf="validar_lenguage()=='english'" routerLink="/editarJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                                href="#">Update player</a></li>
+                        <li><a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/eliminarJugador" routerLinkActive="router-link-active" class="dropdown-item"
                                 href="#">Eliminar Jugador</a></li>
-                        <li><a routerLink="/nuevaPareja" routerLinkActive="router-link-active" class="dropdown-item"
+                        <li><a *ngIf="validar_lenguage()=='english'" routerLink="/eliminarJugador" routerLinkActive="router-link-active" class="dropdown-item"
+                                href="#">Delete player</a></li>
+                        <li><a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/nuevaPareja" routerLinkActive="router-link-active" class="dropdown-item"
                                 href="#">Crear nueva Pareja</a></li>
+                        <li><a *ngIf="validar_lenguage()=='english'" routerLink="/nuevaPareja" routerLinkActive="router-link-active" class="dropdown-item"
+                                href="#">Create a new Couple</a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item" *ngIf="comprobarAdmin()">
-                    <a routerLink="/crearPartido" routerLinkActive="router-link-active" class="nav-link">Nuevo
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/crearPartido" routerLinkActive="router-link-active" class="nav-link">Nuevo
                         partido</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/crearPartido" routerLinkActive="router-link-active" class="nav-link">New Match</a>
                 </li>
                 <li class="nav-item" *ngIf="comprobarAdmin()||comprobarJugador()">
-                    <a routerLink="/historialPartidos" routerLinkActive="router-link-active" class="nav-link">Historial
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/historialPartidos" routerLinkActive="router-link-active" class="nav-link">Historial
                         de partidos</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/historialPartidos" routerLinkActive="router-link-active" class="nav-link">Matchs's history</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/ayuda" routerLinkActive="router-link-active" class="nav-link active"
+                    <a *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" routerLink="/ayuda" routerLinkActive="router-link-active" class="nav-link active"
                         aria-current="page" href="#">Ayuda</a>
+                    <a *ngIf="validar_lenguage()=='english'" routerLink="/ayuda" routerLinkActive="router-link-active" class="nav-link active"
+                        aria-current="page" href="#">Help</a>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <img class="banderas mt-2" src="../../../assets/imagen/spain.jpg" alt="Español" id="banderaEspaña" width="50px">
+                    <img class="banderas mt-2" src="../../../assets/imagen/spain.png" alt="Español" id="banderaEspaña" width="50px">
                     <img class="banderas mt-2" src="../../../assets/imagen/eeuu.png" alt="Inglés" id="banderaEeuu" width="50px">
 
                 </li>
                 <li class="nav-item">
                     <a *ngIf="!validarSesionIniciada()" routerLinkActive="router-link-active" class="nav-link">
-                        <button type="button" class="btn btn-primary" (click)="irLogin()">Iniciar Sesión</button>
+                        <button *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="button" class="btn btn-primary" (click)="irLogin()">Iniciar Sesión</button>
+                        <button *ngIf="validar_lenguage()=='english'" type="button" class="btn btn-primary" (click)="irLogin()">Log In</button>
+
                     </a>
                     <a *ngIf="validarSesionIniciada()" routerLinkActive="router-link-active" class="nav-link">
-                        <button type="button" class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>
+                        <button *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="button" class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>
+                        <button *ngIf="validar_lenguage()=='english'" type="button" class="btn btn-danger" (click)="cerrarSesion()">Log Out</button>
+
                     </a>
                 </li>
             </ul>

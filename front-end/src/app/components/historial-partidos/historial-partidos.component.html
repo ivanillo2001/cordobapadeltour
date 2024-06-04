@@ -1,4 +1,5 @@
-<div class="row" id="formDivision">
+<div *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" class="row" id="formDivision">
+    <h3>Introduce la división de los partidos que quieres ver</h3>
     <form [formGroup]="divisionForm" (ngSubmit)="buscarPartidos()">
         <div class="form-group col-6">
             <select class="form-control" id="divisionSelect" formControlName="division">
@@ -9,6 +10,19 @@
         <button type="submit" class="btn btn-outline-primary mt-2">Cargar</button>
     </form>
 </div>
-<div class="row" id="zonaPartidos">
 
+<div *ngIf="validar_lenguage()=='english'" class="row" id="formDivision">
+    <h3>Enter the division of the matches you want to see</h3>
+    <form [formGroup]="divisionForm" (ngSubmit)="buscarPartidos()">
+        <div class="form-group col-6">
+            <select class="form-control" id="divisionSelect" formControlName="division">
+            <option value="1">First Division</option>
+            <option value="2">Second Division</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-2">Load</button>
+    </form>
+</div>
+
+<div class="row" id="zonaPartidos">
 </div>

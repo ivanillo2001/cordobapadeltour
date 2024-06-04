@@ -31,8 +31,8 @@ export class CrearPartidoComponent implements OnInit{
       juegos1SetPareja2: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
       juegos2SetPareja1: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
       juegos2SetPareja2: [,[ Validators.required, Validators.min(0), Validators.max(7)]],
-      juegos3SetPareja1: [0],
-      juegos3SetPareja2: [0],
+      juegos3SetPareja1: [],
+      juegos3SetPareja2: [],
       
     });
   }
@@ -63,7 +63,9 @@ export class CrearPartidoComponent implements OnInit{
       let pareja2 = this.partidoForm.get('pareja2')!.value;
       let set1 = this.partidoForm.get('juegos1SetPareja1')!.value + ' - '+this.partidoForm.get('juegos1SetPareja2')!.value ;
       let set2 = this.partidoForm.get('juegos2SetPareja1')!.value + ' - '+this.partidoForm.get('juegos2SetPareja2')!.value ;
-      let set3 = this.partidoForm.get('juegos3SetPareja1')!.value + ' - '+this.partidoForm.get('juegos3SetPareja2')!.value ;
+      let juegos3SetPareja1 = this.partidoForm.get('juegos3SetPareja1')?.value || 0;
+      let juegos3SetPareja2 = this.partidoForm.get('juegos3SetPareja2')?.value || 0;
+      let set3 = `${juegos3SetPareja1} - ${juegos3SetPareja2}`; 
       
       this.serviciosJugadores.crearPartido(parseInt(pareja1),parseInt(pareja2),set1,set2,set3,parseInt(this.division)).subscribe({
         next:(data) => {

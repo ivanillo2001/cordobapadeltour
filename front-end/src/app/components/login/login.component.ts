@@ -18,14 +18,20 @@ export class LoginComponent implements OnInit{
   private serv_usuario = inject(UsuarioService)
   private router = inject (Router)
   constructor(private fb:FormBuilder,
-     private cookieService: CookieService,
-     private location: Location){}
+      private cookieService: CookieService,
+      private location: Location){}
   public formEnviado = false
   ngOnInit(): void { 
     this.frm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
+    this.validar_lenguage()
+  }
+
+  validar_lenguage(){
+    let lenguage = this.cookieService.getCookie('language')
+    return lenguage
   }
 
   validarDatos() {

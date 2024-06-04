@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-eliminar-jugador',
   standalone: true,
@@ -11,15 +12,23 @@ import { Router } from '@angular/router';
   templateUrl: './eliminar-jugador.component.html',
   styleUrl: './eliminar-jugador.component.css'
 })
-export class EliminarJugadorComponent {
+export class EliminarJugadorComponent implements OnInit{
   router = inject(Router)
   idJugador!:number
+  cookie_service = inject(CookieService)
   private serviciosJugador = inject(UsuarioService);
   jugadorForm:FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.jugadorForm = this.formBuilder.group({
       nombreJugador: ['', [Validators.required]],
     });
+  }
+  ngOnInit(): void {
+    this.validar_lenguage()
+  }
+  validar_lenguage(){
+    let lenguage = this.cookie_service.getCookie('language')
+    return lenguage
   }
   buscarJugador() {
     if (this.jugadorForm.valid) {

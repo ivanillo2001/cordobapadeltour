@@ -17,6 +17,11 @@ export class NavegacionComponent implements OnInit {
   ngOnInit(): void {
     this.validarSesionIniciada()
     this.activarBotones()
+    this.validar_lenguage()
+  }
+  validar_lenguage(){
+    let lenguage = this.cookieService.getCookie('language')
+    return lenguage
   }
   activarBotones() {
     let banderaSpain = document.querySelector("#banderaEspaña") as HTMLImageElement;

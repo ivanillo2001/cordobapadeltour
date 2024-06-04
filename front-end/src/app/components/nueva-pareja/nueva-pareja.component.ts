@@ -1,10 +1,11 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Jugador } from '../../modelos/jugador';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { CookieService } from '../../servicios/cookie-service.service';
 @Component({
   selector: 'app-nueva-pareja',
   standalone: true,
@@ -12,11 +13,12 @@ import Swal from 'sweetalert2';
   templateUrl: './nueva-pareja.component.html',
   styleUrl: './nueva-pareja.component.css'
 })
-export class NuevaParejaComponent {
+export class NuevaParejaComponent implements OnInit{
   divisionForm: FormGroup;
   parejaForm: FormGroup;
   jugadores: Jugador[] = [];
   private division!:number
+  cookie_service = inject(CookieService)
   @ViewChild('jugador1Select') jugador1Select!: ElementRef;
   @ViewChild('jugador2Select') jugador2Select!: ElementRef;
   constructor(private formBuilder: FormBuilder, private serviciosJugadores: UsuarioService) {
@@ -28,6 +30,14 @@ export class NuevaParejaComponent {
       jugador1: ['0', [Validators.required]],
       jugador2: ['0', [Validators.required]]
     });
+  }
+  ngOnInit(): void {
+    this.validar_lenguage()
+  }
+
+  validar_lenguage(){
+    let lenguage = this.cookie_service.getCookie('language')
+    return lenguage
   }
 
   buscarJugadores() {

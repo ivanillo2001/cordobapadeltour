@@ -1,19 +1,31 @@
-<div *ngIf="validar_lenguage()==='spanish'" class="row" id="formulario">
-    <h1>Crea un nuevo partido</h1>
+<div class="row" id="formulario">
+    <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Crea un nuevo partido</h1>
+    <h1 *ngIf="validar_lenguage()=='english'">Create a new match</h1>
+
     <form [formGroup]="partidoForm" (ngSubmit)="crearPartido()">
         <div class="col-md-4">
-            <h2>Indica la división</h2>
+            <h2 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Indica la división</h2>
+            <h2 *ngIf="validar_lenguage()=='english'">Choose the division</h2>
+
             <select class="form-control" id="division" formControlName="division">
-                <option value="0">Selecciona una division</option>
-                <option value="1">Primera división</option>
-                <option value="2">Segunda división</option>
+                <option *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" value="0">Selecciona una division</option>
+                <option *ngIf="validar_lenguage()=='english'" value="0">Choose the division</option>
+
+                <option *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" value="1">Primera División</option>
+                <option *ngIf="validar_lenguage()=='english'" value="1">First Division</option>
+
+                <option *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" value="2">Segunda División</option>
+                <option *ngIf="validar_lenguage()=='english'" value="2">Second Division</option>
             </select>
         </div>
         <div class="row mt-md-5">
             <div class="col-md-4" id="pareja1">
-                <h1>Pareja 1</h1>
+                <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Pareja 1</h1>
+                <h1 *ngIf="validar_lenguage()=='english'">Couple 1</h1>
+
                 <select class="form-control mt-5" id="pareja1" formControlName="pareja1">
-                    <option value="0">Indique la pareja</option>
+                    <option value="0" *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Indique la pareja</option>
+                    <option value="0" *ngIf="validar_lenguage()=='english'">Choose the couple</option>
                     <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
                         {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
                     </option>
@@ -21,9 +33,11 @@
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4" id="pareja2">
-                <h1>Pareja 2</h1>
+                <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Pareja 2</h1>
+                <h1 *ngIf="validar_lenguage()=='english'">Couple 2</h1>
                 <select class="form-control mt-5" id="pareja2" formControlName="pareja2">
-                    <option value="0">Indique la pareja</option>
+                    <option value="0" *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Indique la pareja</option>
+                    <option value="0" *ngIf="validar_lenguage()=='english'">Choose the couple</option>
                     <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
                         {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
                     </option>
@@ -31,98 +45,22 @@
             </div>
         </div>
         <div class="row mt-md-5">
-            <h1>RESULTADO</h1>
+            <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">RESULTADO FINAL</h1>
+                <h1 *ngIf="validar_lenguage()=='english'">FINAL SCORE</h1>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
-                        placeholder="Primer Set Pareja1" />
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
-                        placeholder="Primer Set Pareja2" />
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1"
-                        placeholder="Segundo Set Pareja1" />
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2"
-                        placeholder="Segundo Set Pareja2" />
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1"
-                        placeholder="Tercer Set Pareja1" />
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2"
-                        placeholder="Tercer Set Pareja2" />
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary mt-5">Crear Partido</button>
-    </form>
-</div>
-<!-- <div *ngIf="validar_lenguage()=='english'" class="row" id="formulario">
-    <h1>Create a new Match</h1>
-    <form [formGroup]="partidoForm" (ngSubmit)="crearPartido()">
-        <div class="col-md-4">
-            <h2>Choose the division</h2>
-            <select class="form-control" id="division" formControlName="division">
-                <option value="0">Selecciona una division</option>
-                <option value="1">First Division</option>
-                <option value="2">Second Division</option>
-            </select>
-        </div>
-        <div class="row mt-md-5">
-            <div class="col-md-4" id="pareja1">
-                <h1>Couple 1</h1>
-                <select class="form-control mt-5" id="pareja1" formControlName="pareja1">
-                    <option value="0">Choose the couple</option>
-                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
-                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4" id="pareja2">
-                <h1>Couple 2</h1>
-                <select class="form-control mt-5" id="pareja2" formControlName="pareja2">
-                    <option value="0">Choose the couple</option>
-                    <option *ngFor="let pareja of parejas" [value]="pareja.id_pareja">
-                        {{ pareja.nombre_jugador1 }} - {{pareja.nombre_jugador2}}
-                    </option>
-                </select>
-            </div>
-        </div>
-        <div class="row mt-md-5">
-            <h1>Final Score</h1>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
+                        placeholder="Primer Set Pareja 1" />
+                    <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
                         placeholder="First Set Couple 1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
+                        placeholder="Primer Set Pareja 2" />
+                    <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
                         placeholder="First Set Couple 2" />
                 </div>
             </div>
@@ -130,14 +68,18 @@
         <div class="row mt-5">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos1SetPareja1"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos2SetPareja1"
+                        placeholder="Segundo Set Pareja 1" />
+                    <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos2SetPareja1"
                         placeholder="Second Set Couple 1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos1SetPareja2"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos2SetPareja2"
+                        placeholder="Segundo Set Pareja 2" />
+                    <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos2SetPareja2"
                         placeholder="Second Set Couple 2" />
                 </div>
             </div>
@@ -145,18 +87,22 @@
         <div class="row mt-5">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos1SetPareja1"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null"type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos3SetPareja1"
+                        placeholder="Tercer Set Pareja 1" />
+                    <input *ngIf="validar_lenguage()=='english'"type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos3SetPareja1"
                         placeholder="Third Set Couple 1" />
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos1SetPareja2"
+                    <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos3SetPareja2"
+                        placeholder="Tercer Set Pareja 2" />
+                    <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos3SetPareja2"
                         placeholder="Third Set Couple 2" />
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-5">Create match</button>
+        <button type="submit" class="btn btn-primary mt-5">Crear Partido</button>
     </form>
-</div> -->
+</div>
