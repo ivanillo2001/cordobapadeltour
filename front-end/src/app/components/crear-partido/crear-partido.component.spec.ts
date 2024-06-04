@@ -53,4 +53,24 @@ beforeEach(async () => {
         juegos2SetPareja2.setValue(0)
         expect(form.valid).toBeTruthy()
     })
+
+    it('Formulario crear partido completo con datos incorrectos',()=>{
+        fixture.detectChanges()
+        const form = component.partidoForm
+        const division = form.controls['division']
+        const pareja1 = form.controls['pareja1']
+        const pareja2 = form.controls['pareja2']
+        const juegos1SetPareja1 = form.controls['juegos1SetPareja1']
+        const juegos1SetPareja2 = form.controls['juegos1SetPareja2']
+        const juegos2SetPareja1 = form.controls['juegos2SetPareja1']
+        const juegos2SetPareja2 = form.controls['juegos2SetPareja2']
+        division.setValue(1)
+        pareja1.setValue('Lebron - Paquito')
+        pareja2.setValue('Tapia - Coello')
+        juegos1SetPareja1.setValue(8)
+        juegos1SetPareja2.setValue(-2)
+        juegos2SetPareja1.setValue(16)
+        juegos2SetPareja2.setValue(5)
+        expect(form.invalid).toBeTruthy()
+    })
 });

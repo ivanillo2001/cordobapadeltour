@@ -23,12 +23,12 @@ export class NuevaParejaComponent implements OnInit{
   @ViewChild('jugador2Select') jugador2Select!: ElementRef;
   constructor(private formBuilder: FormBuilder, private serviciosJugadores: UsuarioService) {
     this.divisionForm = this.formBuilder.group({
-      division: ['1', [Validators.required]],
+      division: ['1', [Validators.required, Validators.min(1), Validators.max(2)]],
     });
 
     this.parejaForm = this.formBuilder.group({
-      jugador1: ['0', [Validators.required]],
-      jugador2: ['0', [Validators.required]]
+      jugador1: ['0', [Validators.required, Validators.min(1)]],
+      jugador2: ['0', [Validators.required, Validators.min(1)]]
     });
   }
   ngOnInit(): void {
