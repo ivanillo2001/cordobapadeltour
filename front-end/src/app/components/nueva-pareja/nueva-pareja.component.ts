@@ -28,7 +28,7 @@ export class NuevaParejaComponent implements OnInit{
 
     this.parejaForm = this.formBuilder.group({
       jugador1: ['0', [Validators.required, Validators.min(1)]],
-      jugador2: ['0', [Validators.required, Validators.min(1)]]
+      jugador2: ['0', [Validators.required, Validators.min(1)],]
     });
   }
   ngOnInit(): void {

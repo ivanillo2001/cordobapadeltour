@@ -1,33 +1,50 @@
+@font-face {
+    font-family: "san-diego";
+    src: url('../../../assets/NFL_San_Diego_Chargers.ttf') format('truetype');
+}
+
 #inicio{
-    background-image: url("../../../assets/imagen/foto.jpg");
+    background-image: url("../../../assets/imagen/foto.png");
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 90vh;
 }
-
-#titulo-box {
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
-    padding: 25%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a slight shadow */
-    text-align: center;
-    opacity: 50%;
+hr{
+    height: 10px; /* Cambia el valor para ajustar el grosor */
+    background-color: black; /* Color de la línea */
 }
-
 #titulo {
     margin: 0;
+    font-family: 'san-diego';
+    font-size: 50px;
 }
-
-#titulo, #directivos{
-    text-align: center;
+#descripcion{
+    font-size: 25px;
+}
+#directivos{
+    font-family: 'san-diego';
+    font-size: 85px;
+    color: white;
+}
+#zona_directivo{
+    border: 1px solid black;
+    height: 20vh;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
     justify-content: center;
-    font-family: "Permanent Marker", cursive;
-    font-weight: 400;
-    font-size: 7vh;
-    font-style: normal;
-    color: rgb(0, 0, 0);
+    align-items: center;
+    margin-top: 10vh;
+    background-image: url('../../../assets/imagen/fondo_directores.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#texto_bienvenida{
+    margin-top: 10vh;
+    font-family: 'san-diego';
+    font-size: 50px;
 }
 #imagenPortada{
     max-width: 75%; /* La imagen nunca será más grande que su contenedor */
@@ -37,6 +54,12 @@
     display: block;
     margin: 0 auto;
     border-radius: 25px;
+}
+
+h2{
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bolder;
 }
 .imagen-con-hover {
     position: relative;

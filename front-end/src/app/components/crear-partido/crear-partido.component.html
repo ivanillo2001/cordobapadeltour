@@ -19,7 +19,7 @@
             </select>
         </div>
         <div class="row mt-md-5">
-            <div class="col-md-4" id="pareja1">
+            <div class="col-md-4 mt-4" id="pareja1">
                 <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Pareja 1</h1>
                 <h1 *ngIf="validar_lenguage()=='english'">Couple 1</h1>
 
@@ -32,7 +32,7 @@
                 </select>
             </div>
             <div class="col-md-4"></div>
-            <div class="col-md-4" id="pareja2">
+            <div class="col-md-4 mt-4" id="pareja2">
                 <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">Pareja 2</h1>
                 <h1 *ngIf="validar_lenguage()=='english'">Couple 2</h1>
                 <select class="form-control mt-5" id="pareja2" formControlName="pareja2">
@@ -44,11 +44,11 @@
                 </select>
             </div>
         </div>
-        <div class="row mt-md-5">
+        <div class="row mt-5">
             <h1 *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null">RESULTADO FINAL</h1>
                 <h1 *ngIf="validar_lenguage()=='english'">FINAL SCORE</h1>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group mt-1">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
                         placeholder="Primer Set Pareja 1" />
                     <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos1SetPareja1" id="juegos1SetPareja1"
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-4 mt-2">
                 <div class="form-group">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos1SetPareja2" id="juegos1SetPareja2"
                         placeholder="Primer Set Pareja 2" />
@@ -67,7 +67,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group mt-1">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos2SetPareja1"
                         placeholder="Segundo Set Pareja 1" />
                     <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos2SetPareja1" id="juegos2SetPareja1"
@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos2SetPareja2"
                         placeholder="Segundo Set Pareja 2" />
                     <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos2SetPareja2" id="juegos2SetPareja2"
@@ -86,7 +86,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group mt-1">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null"type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos3SetPareja1"
                         placeholder="Tercer Set Pareja 1" />
                     <input *ngIf="validar_lenguage()=='english'"type="number" class="form-control" formControlName="juegos3SetPareja1" id="juegos3SetPareja1"
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <input *ngIf="validar_lenguage()=='spanish'||validar_lenguage()==null" type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos3SetPareja2"
                         placeholder="Tercer Set Pareja 2" />
                     <input *ngIf="validar_lenguage()=='english'" type="number" class="form-control" formControlName="juegos3SetPareja2" id="juegos3SetPareja2"

@@ -3,7 +3,7 @@
 <div id="formulario" class="row">
   <p>Por favor, indique a qué división pertenece esta nueva pareja.</p>
   <form [formGroup]="divisionForm" (ngSubmit)="buscarJugadores()">
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <select class="form-control" id="divisionSelect" formControlName="division">
         <option value="1">Primera División</option>
         <option value="2">Segunda División</option>
@@ -15,7 +15,7 @@
 
 <div id="zonaJugadores" class="row d-none">
   <h3>Seleccione Jugadores:</h3>
-  <form [formGroup]="parejaForm" (ngSubmit)="actualizarParejas()" class="col-6">
+  <form [formGroup]="parejaForm" (ngSubmit)="actualizarParejas()" class="col-12 col-md-6">
     <div class="form-group">
       <label for="jugador1">Jugador 1:</label>
       <select class="form-control selJugadores" id="jugador1" formControlName="jugador1" #jugador1Select>
@@ -25,7 +25,7 @@
         </option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group mt-3">
       <label for="jugador2">Jugador 2:</label>
       <select class="form-control selJugadores" id="jugador2" formControlName="jugador2" #jugador2Select>
         <option value="0">Seleccione un jugador</option>
@@ -44,7 +44,7 @@
 <div id="formulario" class="row">
   <p>Type the division</p>
   <form [formGroup]="divisionForm" (ngSubmit)="buscarJugadores()">
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <select class="form-control" id="divisionSelect" formControlName="division">
         <option value="1">First Division</option>
         <option value="2">Second Division</option>
@@ -56,7 +56,7 @@
 
 <div id="zonaJugadores" class="row d-none">
   <h3>Choose the players:</h3>
-  <form [formGroup]="parejaForm" (ngSubmit)="actualizarParejas()" class="col-6">
+  <form [formGroup]="parejaForm" (ngSubmit)="actualizarParejas()" class="col-12 col-md-6">
     <div class="form-group">
       <label for="jugador1">Player 1:</label>
       <select class="form-control selJugadores" id="jugador1" formControlName="jugador1" #jugador1Select>
@@ -66,7 +66,7 @@
         </option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group mt-3">
       <label for="jugador2">Player 2:</label>
       <select class="form-control selJugadores" id="jugador2" formControlName="jugador2" #jugador2Select>
         <option value="0">Choose the player</option>

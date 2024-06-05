@@ -79,16 +79,16 @@ export class HistorialPartidosComponent implements OnInit{
 
   // Crear las columnas para los jugadores y los sets
   const jugadoresCol1 = document.createElement('div');
-  jugadoresCol1.className = 'col-md-3';
-  jugadoresCol1.innerHTML = `<p>${jugador1}</p><p>${jugador2}</p>`;
+  jugadoresCol1.className = 'col-3';
+  jugadoresCol1.innerHTML = `<p class="mt-3">${jugador1}</p><p class="mt-3">${jugador2}</p>`;
 
   const setsCol = document.createElement('div');
-  setsCol.className = 'col-md-6 text-center';
-  setsCol.innerHTML = `<p>${set1}</p><p>${set2}</p><p>${set3}</p>`;
+  setsCol.className = 'col-6 text-center';
+  setsCol.innerHTML = `<p mt-2>${set1}</p><p>${set2}</p><p>${set3}</p>`;
 
   const jugadoresCol2 = document.createElement('div');
-  jugadoresCol2.className = 'col-md-3';
-  jugadoresCol2.innerHTML = `<p>${jugador3}</p><p>${jugador4}</p>`;
+  jugadoresCol2.className = 'col-3';
+  jugadoresCol2.innerHTML = `<p class="mt-3">${jugador3}</p><p class="mt-3">${jugador4}</p>`;
 
   // Agregar las columnas al div del partido
   partidoDiv.appendChild(jugadoresCol1);

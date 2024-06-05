@@ -3,13 +3,13 @@
 <form *ngIf="validar_lenguage()=='spanish'" [formGroup]="jugadorForm" (ngSubmit)="buscarJugador()">
     <div class="form-group">
         <input type="text" class="form-control" formControlName="nombreJugador" id="nombreJugador" placeholder="Nombre del jugador">
-        <small *ngIf="jugadorForm.get('nombreJugador')?.errors?.['required']" id="errorNombre">Campo obligatorio</small>
+        <small *ngIf="jugadorForm.get('nombreJugador')?.errors?.['required']" id="errorNombre">Campo obligatorio*</small>
     </div>
     <button type="submit" class="btn btn-outline-primary mt-2">Buscar Jugador</button>
 </form>
 
 <div *ngIf="validar_lenguage()=='spanish'" id="datosJugador" class="mt-5 d-none">
-    <h4>Edita los campos que desees</h4>
+    <h3>Edita los campos que desees</h3>
     <form [formGroup]="editarForm" (ngSubmit)="editarJugador()">
         <div class="form-group">
             <label for="nombre_jugador">Nombre del jugador</label>
