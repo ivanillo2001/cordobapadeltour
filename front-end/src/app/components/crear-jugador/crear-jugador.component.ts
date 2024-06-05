@@ -32,7 +32,11 @@ export class CrearJugadorComponent implements OnInit{
   }
   validar_lenguage(){
     let lenguage = this.cookieService.getCookie('language')
-    return lenguage
+    if (lenguage =='spanish'|| lenguage=='english'){
+      return lenguage
+    }else{
+      return null
+    }
   }
 
   validarSesionIniciada(){

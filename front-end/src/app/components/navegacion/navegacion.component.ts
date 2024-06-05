@@ -21,7 +21,11 @@ export class NavegacionComponent implements OnInit {
   }
   validar_lenguage(){
     let lenguage = this.cookieService.getCookie('language')
-    return lenguage
+    if (lenguage =='spanish'|| lenguage=='english'){
+      return lenguage
+    }else{
+      return null
+    }
   }
   activarBotones() {
     let banderaSpain = document.querySelector("#banderaEspaña") as HTMLImageElement;

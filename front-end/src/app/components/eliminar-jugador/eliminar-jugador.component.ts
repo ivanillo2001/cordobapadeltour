@@ -28,7 +28,11 @@ export class EliminarJugadorComponent implements OnInit{
   }
   validar_lenguage(){
     let lenguage = this.cookie_service.getCookie('language')
-    return lenguage
+    if (lenguage =='spanish'|| lenguage=='english'){
+      return lenguage
+    }else{
+      return null
+    }
   }
   buscarJugador() {
     if (this.jugadorForm.valid) {
