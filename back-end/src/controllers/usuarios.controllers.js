@@ -201,7 +201,7 @@ export const obtenerUsuarios = async (req, res) => {
   export const obtenerParejasDivision = async(req,res)=>{
     try {
       const {division}= req.body;
-      const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion asc limit 5",[division]);
+      const [result]= await conexion.query("SELECT * FROM pareja WHERE division = ? order by fecha_creacion desc limit 5",[division]);
       res.status(200).json(result)
       console.log(result);
     } catch (error) {
