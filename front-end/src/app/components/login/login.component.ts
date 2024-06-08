@@ -64,6 +64,13 @@ export class LoginComponent implements OnInit{
           }
         }
       );
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Rellene el formulario",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   }
   
