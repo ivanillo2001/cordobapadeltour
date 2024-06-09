@@ -3,13 +3,10 @@ import conexion from "../../mysql_conector.js";
 export const validarUsuario = async (req, res) => {
     try {
       const { user, password } = req.body;
-      console.log(req.body);
-  
       // Realizar la consulta para obtener los jugadores y el rol que coinciden con las credenciales
       const result = await conexion.query("SELECT rol FROM jugadores WHERE username = ? AND password = ?", [user, password]);
-  
       // Verificar si se encontraron jugadores con las credenciales proporcionadas
-      if (result.length > 0) {
+      if (result[0] !='') {
         // Si se encontraron jugadores, devolver el rol y los jugadores
         const rol = result[0];
         res.status(200).json({ valido: true, rol});
@@ -23,7 +20,7 @@ export const validarUsuario = async (req, res) => {
       });
     }
   };
-  
+
 export const obtenerUsuarios = async (req, res) => {
     try {
         const { user, password } = req.body;

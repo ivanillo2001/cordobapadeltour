@@ -41,10 +41,9 @@ export class LoginComponent implements OnInit{
       const password = this.frm.get('password')?.value;
       this.serv_usuario.validarUsuario(user, password).subscribe(
         (res: any) => {
-          if (res && res.valido === true) { // Verifica si la respuesta es válida y las credenciales son válidas
+          if (res.valido==true) { // Verifica si la respuesta es válida y las credenciales son válidas
             const rol = res.rol; // Obtienes el rol
             let rolReal = rol[0].rol;
-            console.log(rolReal);
             Swal.fire({
               icon: "success",
               title: "Bienvenido " + user,
